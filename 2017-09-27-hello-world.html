@@ -8,7 +8,7 @@
 	
 		<link href="/favicon.ico" rel="icon">
 	 
-      <title>关于我 | Tomtan&#39;s Blog</title>
+      <title>设置contentEditable=&#34;true&#34;作为文本编辑器，定位光标解决办法 | Tomtan&#39;s Blog</title>
 	<link rel="stylesheet" href="/css/font-awesome/css/font-awesome.css">
 	<link rel="stylesheet" href="/css/style.css">
 	<link rel="stylesheet" href="/css/highlight.css">
@@ -89,15 +89,21 @@
 		
 		
 			<header class="entry-header">
-				<h2 class="entry-title"><a class="post-title-link" href="/about/index.html" rel="bookmark">关于我</a></h2>	
+				<h2 class="entry-title"><a class="post-title-link" href="/2017-09-27-hello-world.html" rel="bookmark">设置contentEditable="true"作为文本编辑器，定位光标解决办法</a></h2>	
 			</header>
 		
 		<!-- .entry-header -->
 		<div class="entry-content">
 			
-				<p><strong>我的能力:</strong><br>精通html5/css3/javascript, 能写javascript原生代码。<br>精通Vue, 并能够用nuxtjs建立SSR网站。<br>能够熟练使用nodejs。<br>有微信接口和微信小程序的开发经验。<br>熟练使用github, 并建立有个人技术blog。</p>
-<p><strong>学习经历:</strong><br>2011-2013年  深圳市广播电视大学  计算机网络技术(专科)</p>
-<p><strong>联系方式:</strong><br>royongbin@qq.com</p>
+				<p>html部分</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"ql-editor ql-blank"</span> <span class="attr">id</span>=<span class="string">"myEditor"</span> <span class="attr">style</span>=<span class="string">"padding:10px;width: 100%;height: 100%;overflow-y: scroll;"</span> <span class="attr">contentEditable</span>=<span class="string">"true"</span> <span class="attr">data-placeholder</span>=<span class="string">"这里输入内容!"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>设置焦点</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">setCaretPosition() &#123;</div><div class="line">    <span class="keyword">var</span> sel;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.savedRange != <span class="literal">null</span>) &#123;</div><div class="line"></div><div class="line">        sel = <span class="keyword">this</span>.win.getSelection();</div><div class="line">        <span class="keyword">if</span> (sel.rangeCount &gt; <span class="number">0</span>)</div><div class="line">            sel.removeAllRanges();</div><div class="line">        sel.addRange(<span class="keyword">this</span>.savedRange);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span> ( (sel = <span class="keyword">this</span>.doc.selection) &amp;&amp; sel.type != <span class="string">"Control"</span>)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">this</span>.win.getSelection().addRange(<span class="keyword">this</span>.savedRange);</div><div class="line">    &#125;</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
+<p>获取焦点</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">getCaretCharacterOffsetWithin() &#123;</div><div class="line">    <span class="keyword">var</span> caretOffset = <span class="number">0</span>;</div><div class="line">    <span class="keyword">var</span> sel;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="keyword">this</span>.win.getSelection != <span class="string">"undefined"</span>) &#123;</div><div class="line">        sel = <span class="keyword">this</span>.win.getSelection();</div><div class="line">        <span class="keyword">if</span> (sel.rangeCount &gt; <span class="number">0</span>) &#123;</div><div class="line">            <span class="keyword">var</span> range = <span class="keyword">this</span>.win.getSelection().getRangeAt(<span class="number">0</span>);</div><div class="line">            <span class="keyword">var</span> preCaretRange = range.cloneRange();</div><div class="line">            preCaretRange.selectNodeContents(<span class="keyword">this</span>.editor);</div><div class="line">            preCaretRange.setEnd(range.endContainer, range.endOffset);</div><div class="line">            caretOffset = preCaretRange.toString().length;</div><div class="line">            <span class="keyword">this</span>.savedRange = range</div><div class="line">        &#125;</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> ( (sel = <span class="keyword">this</span>.doc.selection) &amp;&amp; sel.type != <span class="string">"Control"</span>) &#123;</div><div class="line">        <span class="keyword">var</span> textRange = sel.createRange();</div><div class="line">        <span class="keyword">var</span> preCaretTextRange = <span class="keyword">this</span>.doc.body.createTextRange();</div><div class="line">        preCaretTextRange.moveToElementText(<span class="keyword">this</span>.editor);</div><div class="line">        preCaretTextRange.setEndPoint(<span class="string">"EndToEnd"</span>, textRange);</div><div class="line">        caretOffset = preCaretTextRange.text.length;</div><div class="line">        <span class="keyword">this</span>.savedRange = textRange</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">this</span>.caretOffset = caretOffset;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>源代码使用Vue2 + Vux</p>
+<p>为了方便测试，源代码调用了Vux的WechatEmotion组件，在编辑器中插件图片。</p>
+<p><a href="https://github.com/ssttm169/tom-editor" target="_blank" rel="external">github源代码的网址</a></p>
 
 			
 		</div><!-- .entry-content -->
@@ -112,14 +118,14 @@
 		<footer class="entry-footer">
 			<span class="posted-on font-asesome-icon">
 	<a href="" rel="bookmark">
-	<time class="updated" datetime="2017-09-27T07:57:45.000Z">2017-09-27</time>
+	<time class="updated" datetime="2017-09-27T07:50:25.000Z">2017-09-27</time>
 	</a>
 </span>
 
 		
 
     <span class="eye font-asesome-icon" >
-         <span id="/about/index.html" class="leancloud_visitors" data-flag-title="关于我">
+         <span id="/2017-09-27-hello-world.html" class="leancloud_visitors" data-flag-title="设置contentEditable="true"作为文本编辑器，定位光标解决办法">
         
         </span>
     </span>
