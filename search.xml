@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+    
+    <entry>
+      <title><![CDATA[H5,移动端调试神器 微信web开发者工具]]></title>
+      <url>/2017-09-27-how-to-use-wechat-debug.html</url>
+      <content type="html"><![CDATA[<p> 微信整合了社交，支付，自媒体等强大的功能，现在许多H5的网页都是通过微信的浏览的，所以在开发过程，是避免不了出现问题，但是在手机上浏览，我们是无法知道是哪里出错了。对于这个问题， 可以使用微信web开发者工具解决。</p>
+<a id="more"></a>
+<p>名称为：wechat_web_devtools_0.7.0_x64.exe。</p>
+<p>打开工具之后, 打开微信，扫码登陆</p>
+<p><img src="http://images2017.cnblogs.com/blog/99430/201708/99430-20170809175359011-1339811111.png" alt="img"></p>
+<p>登录成功之后，点击移动调试，按照里边说明所示，</p>
+<p><img src="http://images2017.cnblogs.com/blog/99430/201708/99430-20170809175038027-1822739564.png" alt="img"></p>
+<p><img src="http://images2017.cnblogs.com/blog/99430/201708/99430-20170809175257824-339466989.png" alt="img"></p>
+<p>手机设置成功之后，点击 开始调试</p>
+<p><img src="http://images2017.cnblogs.com/blog/99430/201708/99430-20170809175955527-1564391361.png" alt="img"></p>
+<p><strong>注意，如果系统提示你升级，千万不要升级，新版删除移动调试的功能：</strong></p>
+<p>如果你找不到安装文件，我这里提供一下, <a href="https://github.com/ssttm169/wechat_web_devtools_0.7.0_x64" target="_blank" rel="external">github网址</a></p>
+]]></content>
+      
+        <categories>
+            
+            <category> 工具使用 </category>
+            
+        </categories>
+        
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[做人做事准则]]></title>
+      <url>/2017-09-27-how-to-be-a-man.html</url>
+      <content type="html"><![CDATA[<p>1.不管发生什么事情，都不要乱发脾气，要冷静，想清楚之后，再做决定。<br>2.时间利用最大化，不浪费一分一秒。<br><a id="more"></a><br>3.不管多忙，都要保待良好的阅读习惯，因为这是快速成长的方式之一。<br>4.做事有计划，事后有总结，要对结果负责，否则无法按时完成任务，也不能改进做事的方式，没有收获等于浪费时间，浪费生命。<br>5.积极主动，把被动变成主动，杜绝消极的心态。 就算遇到挫折，也不要灰心，保持积极的心态，总结反思，重新再来。<br>6.有意志地缎练说话的能力，会说话能顶个千万雄师。<br>7.讲诚信，答应人家的事情，要按时按量完成。<br>8.每天都必须有一点点进步，有一点点收获，还记得越努力越幸运的公式吗~？<br>9.以学习的心态去工作，用新的方法解决问题，在工作中学习，在学习中工作。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 个人成长 </category>
+            
+        </categories>
+        
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[设置contentEditable="true"作为文本编辑器，定位光标解决办法]]></title>
+      <url>/2017-09-27-hello-world.html</url>
+      <content type="html"><![CDATA[<p>html部分</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"ql-editor ql-blank"</span> <span class="attr">id</span>=<span class="string">"myEditor"</span> <span class="attr">style</span>=<span class="string">"padding:10px;width: 100%;height: 100%;overflow-y: scroll;"</span> <span class="attr">contentEditable</span>=<span class="string">"true"</span> <span class="attr">data-placeholder</span>=<span class="string">"这里输入内容!"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>设置焦点</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">setCaretPosition() &#123;</div><div class="line">    <span class="keyword">var</span> sel;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.savedRange != <span class="literal">null</span>) &#123;</div><div class="line"></div><div class="line">        sel = <span class="keyword">this</span>.win.getSelection();</div><div class="line">        <span class="keyword">if</span> (sel.rangeCount &gt; <span class="number">0</span>)</div><div class="line">            sel.removeAllRanges();</div><div class="line">        sel.addRange(<span class="keyword">this</span>.savedRange);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span> ( (sel = <span class="keyword">this</span>.doc.selection) &amp;&amp; sel.type != <span class="string">"Control"</span>)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">this</span>.win.getSelection().addRange(<span class="keyword">this</span>.savedRange);</div><div class="line">    &#125;</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
+<p>获取焦点</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">getCaretCharacterOffsetWithin() &#123;</div><div class="line">    <span class="keyword">var</span> caretOffset = <span class="number">0</span>;</div><div class="line">    <span class="keyword">var</span> sel;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="keyword">this</span>.win.getSelection != <span class="string">"undefined"</span>) &#123;</div><div class="line">        sel = <span class="keyword">this</span>.win.getSelection();</div><div class="line">        <span class="keyword">if</span> (sel.rangeCount &gt; <span class="number">0</span>) &#123;</div><div class="line">            <span class="keyword">var</span> range = <span class="keyword">this</span>.win.getSelection().getRangeAt(<span class="number">0</span>);</div><div class="line">            <span class="keyword">var</span> preCaretRange = range.cloneRange();</div><div class="line">            preCaretRange.selectNodeContents(<span class="keyword">this</span>.editor);</div><div class="line">            preCaretRange.setEnd(range.endContainer, range.endOffset);</div><div class="line">            caretOffset = preCaretRange.toString().length;</div><div class="line">            <span class="keyword">this</span>.savedRange = range</div><div class="line">        &#125;</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> ( (sel = <span class="keyword">this</span>.doc.selection) &amp;&amp; sel.type != <span class="string">"Control"</span>) &#123;</div><div class="line">        <span class="keyword">var</span> textRange = sel.createRange();</div><div class="line">        <span class="keyword">var</span> preCaretTextRange = <span class="keyword">this</span>.doc.body.createTextRange();</div><div class="line">        preCaretTextRange.moveToElementText(<span class="keyword">this</span>.editor);</div><div class="line">        preCaretTextRange.setEndPoint(<span class="string">"EndToEnd"</span>, textRange);</div><div class="line">        caretOffset = preCaretTextRange.text.length;</div><div class="line">        <span class="keyword">this</span>.savedRange = textRange</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">this</span>.caretOffset = caretOffset;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>源代码使用Vue2 + Vux</p>
+<p>为了方便测试，源代码调用了Vux的WechatEmotion组件，在编辑器中插件图片。</p>
+<p><a href="https://github.com/ssttm169/tom-editor" target="_blank" rel="external">github源代码的网址</a></p>
+]]></content>
+      
+        <categories>
+            
+            <category> 前端 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Vue </tag>
+            
+            <tag> 编辑器 </tag>
+            
+            <tag> Vux </tag>
+            
+            <tag> 前端 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+  
+  
+</search>

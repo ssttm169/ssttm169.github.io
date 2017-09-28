@@ -1,388 +1,553 @@
-<html>
-<!-- Head tag -->
+<!DOCTYPE html>
+<html lang="zh-Hans">
 <head>
 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	
-	
-		<link href="/favicon.ico" rel="icon">
-	 
-      <title>Tomtan&#39;s Blog</title>
-	<link rel="stylesheet" href="/css/font-awesome/css/font-awesome.css">
-	<link rel="stylesheet" href="/css/style.css">
-	<link rel="stylesheet" href="/css/highlight.css">
-	
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Tomtan" />
+
+
+    
+    
+
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Tomtan&#39;s Blog">
+<meta property="og:url" content="http://www.itomtan.com/index.html">
+<meta property="og:site_name" content="Tomtan&#39;s Blog">
+<meta property="og:locale" content="zh-Hans">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Tomtan&#39;s Blog">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="Tomtan&#39;s Blog" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>Tomtan&#39;s Blog</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: false,
+        isHome: true,
+        isPost: false,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
     <script>
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?a11b8c3c4528acd5dfd2af97a162d801";
-      var s = document.getElementsByTagName("script")[0]; 
-      s.parentNode.insertBefore(hm, s);
-    })();
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
     </script>
 
-	
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?a11b8c3c4528acd5dfd2af97a162d801";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
 
 </head>
 <body>
-	<div id="site" class="site">
-		<div id="sidebar" class="sidebar">
-			<header id="header" class="site-header">
-	<div class="site-branding">
-		<h1 class="site-title">
-			
-				<a href="/images/avatar.jpg" class="avatar-circle"><img src="/images/avatar.jpg" /></a>
-			
-			<a href="/" rel="home">Tomtan&#39;s Blog</a></h1>
-		<p class="site-description"></p>
-		<button class="secondary-toggle font-asesome-icon">Menu and widgets</button>
-	</div>
-</header>
-<div id="secondary" class="secondary">
-	<nav class="main-navigation">
-                         <ul id="menu-demo-menu" class="nav-menu">
-						 
-							<li class="menu-item"><a href="/">主页</a></li>
-						
-							<li class="menu-item"><a href="/archives">归类</a></li>
-						
-							<li class="menu-item"><a href="/about">关于我</a></li>
-						
-                         </ul>
-    </nav>
-	
-		
-<aside class="widget">
-        <h3 class="widget-title">分类</h3>
-        <ul>
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/个人成长/">个人成长</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具使用/">工具使用</a><span class="category-list-count">1</span></li></ul>
-        </ul>
-    </aside>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Tomtan</a></h1>
+        </hgroup>
 
-
-	
-		
-<aside class="widget">
-		<h3 class="widget-title">归档</h3>		
-		<ul>
-			<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年09月</a><span class="archive-list-count">3</span></li></ul>
-		</ul>
-	</aside>
-
-
-	
-		
-<aside class="widget">
-		<h3 class="widget-title">最新文章</h3>		
-		<ul>
-			
-          <li>
-            <a href="/2017-09-27-how-to-use-wechat-debug.html">H5,移动端调试神器 微信web开发者工具</a>
-          </li>
         
-          <li>
-            <a href="/2017-09-27-how-to-be-a-man.html">做人做事准则</a>
-          </li>
+
         
-          <li>
-            <a href="/2017-09-27-hello-world.html">设置contentEditable=&#34;true&#34;作为文本编辑器，定位光标解决办法</a>
-          </li>
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
         
-		</ul>
-	</aside>
 
 
-	
-		
-  <aside class="widget">
-		<h3 class="widget-title">标签云</h3>
-        <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/Vux/" style="font-size: 10px;">Vux</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/编辑器/" style="font-size: 10px;">编辑器</a>
-    </aside>
-
-	
-</div>
-		</div>
-		<div id="content" class="site-content">
-			<main id="main" class="site-main" role="main">
-				
-  
-    
-<article class="hentry ">
-		
-		
-			<header class="entry-header">
-				<h2 class="entry-title"><a class="post-title-link" href="/2017-09-27-how-to-use-wechat-debug.html" rel="bookmark">H5,移动端调试神器 微信web开发者工具</a></h2>	
-			</header>
-		
-		<!-- .entry-header -->
-		<div class="entry-content">
-			
-				<p> 微信整合了社交，支付，自媒体等强大的功能，现在许多H5的网页都是通过微信的浏览的，所以在开发过程，是避免不了出现问题，但是在手机上浏览，我们是无法知道是哪里出错了。对于这个问题， 可以使用微信web开发者工具解决。</p>
-<p>名称为：wechat_web_devtools_0.7.0_x64.exe， 安装完的图标是这样的。</p>
-<p><img src="C:\Users\Administrator\Desktop\QQ图片20170927182600.png" alt="QQ图片20170927182600"></p>
-<p>打开工具之后, 打开微信，扫码登陆</p>
-<p><img src="http://images2017.cnblogs.com/blog/99430/201708/99430-20170809175359011-1339811111.png" alt="img"></p>
-<p>登录成功之后，点击移动调试，按照里边说明所示，</p>
-<p><img src="http://images2017.cnblogs.com/blog/99430/201708/99430-20170809175038027-1822739564.png" alt="img"></p>
-<p><img src="http://images2017.cnblogs.com/blog/99430/201708/99430-20170809175257824-339466989.png" alt="img"></p>
-<p>手机设置成功之后，点击 开始调试</p>
-<p><img src="http://images2017.cnblogs.com/blog/99430/201708/99430-20170809175955527-1564391361.png" alt="img"></p>
-<p><strong>注意，如果系统提示你升级，千万不要升级，新版删除移动调试的功能：</strong></p>
-<p>如果你找不到安装文件，我这里提供一下, <a href="https://github.com/ssttm169/wechat_web_devtools_0.7.0_x64" target="_blank" rel="external">github网址</a></p>
-
-			
-		</div><!-- .entry-content -->
-		
-		
-		<footer class="entry-footer">
-			<span class="posted-on font-asesome-icon">
-	<a href="" rel="bookmark">
-	<time class="updated" datetime="2017-09-27T10:21:40.000Z">2017-09-27</time>
-	</a>
-</span>
-
-	<span class="cat-links font-asesome-icon">
-		
-				<a href="/categories/工具使用/" rel="category tag">工具使用</a>
-		
-	</span>
-
-		
-
-    <span class="eye font-asesome-icon" >
-         <span id="/2017-09-27-how-to-use-wechat-debug.html" class="leancloud_visitors" data-flag-title="H5,移动端调试神器 微信web开发者工具">
         
-        </span>
-    </span>
-
-		</footer><!-- .entry-footer -->
-</article>
-<div class="misc">
-    <a href="#main"><span class="top font-asesome-icon">Top</span></a>
-</div>
-  
-    
-<article class="hentry ">
-		
-		
-			<header class="entry-header">
-				<h2 class="entry-title"><a class="post-title-link" href="/2017-09-27-how-to-be-a-man.html" rel="bookmark">做人做事准则</a></h2>	
-			</header>
-		
-		<!-- .entry-header -->
-		<div class="entry-content">
-			
-				<p>1.不管发生什么事情，都不要乱发脾气，要冷静，想清楚之后，再做决定。<br>2.时间利用最大化，不浪费一分一秒。<br>3.不管多忙，都要保待良好的阅读习惯，因为这是快速成长的方式之一。<br>4.做事有计划，事后有总结，要对结果负责，否则无法按时完成任务，也不能改进做事的方式，没有收获等于浪费时间，浪费生命。<br>5.积极主动，把被动变成主动，杜绝消极的心态。 就算遇到挫折，也不要灰心，保持积极的心态，总结反思，重新再来。<br>6.有意志地缎练说话的能力，会说话能顶个千万雄师。<br>7.讲诚信，答应人家的事情，要按时按量完成。<br>8.每天都必须有一点点进步，有一点点收获，还记得越努力越幸运的公式吗~？<br>9.以学习的心态去工作，用新的方法解决问题，在工作中学习，在学习中工作。</p>
-
-			
-		</div><!-- .entry-content -->
-		
-		
-		<footer class="entry-footer">
-			<span class="posted-on font-asesome-icon">
-	<a href="" rel="bookmark">
-	<time class="updated" datetime="2017-09-27T10:03:27.000Z">2017-09-27</time>
-	</a>
-</span>
-
-	<span class="cat-links font-asesome-icon">
-		
-				<a href="/categories/个人成长/" rel="category tag">个人成长</a>
-		
-	</span>
-
-		
-
-    <span class="eye font-asesome-icon" >
-         <span id="/2017-09-27-how-to-be-a-man.html" class="leancloud_visitors" data-flag-title="做人做事准则">
-        
-        </span>
-    </span>
-
-		</footer><!-- .entry-footer -->
-</article>
-<div class="misc">
-    <a href="#main"><span class="top font-asesome-icon">Top</span></a>
-</div>
-  
-    
-<article class="hentry ">
-		
-		
-			<header class="entry-header">
-				<h2 class="entry-title"><a class="post-title-link" href="/2017-09-27-hello-world.html" rel="bookmark">设置contentEditable="true"作为文本编辑器，定位光标解决办法</a></h2>	
-			</header>
-		
-		<!-- .entry-header -->
-		<div class="entry-content">
-			
-				<p>html部分</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"ql-editor ql-blank"</span> <span class="attr">id</span>=<span class="string">"myEditor"</span> <span class="attr">style</span>=<span class="string">"padding:10px;width: 100%;height: 100%;overflow-y: scroll;"</span> <span class="attr">contentEditable</span>=<span class="string">"true"</span> <span class="attr">data-placeholder</span>=<span class="string">"这里输入内容!"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>设置焦点</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">setCaretPosition() &#123;</div><div class="line">    <span class="keyword">var</span> sel;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.savedRange != <span class="literal">null</span>) &#123;</div><div class="line"></div><div class="line">        sel = <span class="keyword">this</span>.win.getSelection();</div><div class="line">        <span class="keyword">if</span> (sel.rangeCount &gt; <span class="number">0</span>)</div><div class="line">            sel.removeAllRanges();</div><div class="line">        sel.addRange(<span class="keyword">this</span>.savedRange);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span> ( (sel = <span class="keyword">this</span>.doc.selection) &amp;&amp; sel.type != <span class="string">"Control"</span>)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">this</span>.win.getSelection().addRange(<span class="keyword">this</span>.savedRange);</div><div class="line">    &#125;</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
-<p>获取焦点</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">getCaretCharacterOffsetWithin() &#123;</div><div class="line">    <span class="keyword">var</span> caretOffset = <span class="number">0</span>;</div><div class="line">    <span class="keyword">var</span> sel;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="keyword">this</span>.win.getSelection != <span class="string">"undefined"</span>) &#123;</div><div class="line">        sel = <span class="keyword">this</span>.win.getSelection();</div><div class="line">        <span class="keyword">if</span> (sel.rangeCount &gt; <span class="number">0</span>) &#123;</div><div class="line">            <span class="keyword">var</span> range = <span class="keyword">this</span>.win.getSelection().getRangeAt(<span class="number">0</span>);</div><div class="line">            <span class="keyword">var</span> preCaretRange = range.cloneRange();</div><div class="line">            preCaretRange.selectNodeContents(<span class="keyword">this</span>.editor);</div><div class="line">            preCaretRange.setEnd(range.endContainer, range.endOffset);</div><div class="line">            caretOffset = preCaretRange.toString().length;</div><div class="line">            <span class="keyword">this</span>.savedRange = range</div><div class="line">        &#125;</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> ( (sel = <span class="keyword">this</span>.doc.selection) &amp;&amp; sel.type != <span class="string">"Control"</span>) &#123;</div><div class="line">        <span class="keyword">var</span> textRange = sel.createRange();</div><div class="line">        <span class="keyword">var</span> preCaretTextRange = <span class="keyword">this</span>.doc.body.createTextRange();</div><div class="line">        preCaretTextRange.moveToElementText(<span class="keyword">this</span>.editor);</div><div class="line">        preCaretTextRange.setEndPoint(<span class="string">"EndToEnd"</span>, textRange);</div><div class="line">        caretOffset = preCaretTextRange.text.length;</div><div class="line">        <span class="keyword">this</span>.savedRange = textRange</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">this</span>.caretOffset = caretOffset;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>源代码使用Vue2 + Vux</p>
-<p>为了方便测试，源代码调用了Vux的WechatEmotion组件，在编辑器中插件图片。</p>
-<p><a href="https://github.com/ssttm169/tom-editor" target="_blank" rel="external">github源代码的网址</a></p>
-
-			
-		</div><!-- .entry-content -->
-		
-		
-		<footer class="entry-footer">
-			<span class="posted-on font-asesome-icon">
-	<a href="" rel="bookmark">
-	<time class="updated" datetime="2017-09-27T07:50:25.000Z">2017-09-27</time>
-	</a>
-</span>
-
-	<span class="cat-links font-asesome-icon">
-		
-				<a href="/categories/前端/" rel="category tag">前端</a>
-		
-	</span>
-
-
-	<span class="tags-links font-asesome-icon">
-	
-		<a href="/tags/Vue/" rel="category tag">Vue</a>
-    
-		<a href="/tags/编辑器/" rel="category tag">编辑器</a>
-    
-		<a href="/tags/Vux/" rel="category tag">Vux</a>
-    
-		<a href="/tags/前端/" rel="category tag">前端</a>
-    
-</span>
-		
-
-    <span class="eye font-asesome-icon" >
-         <span id="/2017-09-27-hello-world.html" class="leancloud_visitors" data-flag-title="设置contentEditable="true"作为文本编辑器，定位光标解决办法">
-        
-        </span>
-    </span>
-
-		</footer><!-- .entry-footer -->
-</article>
-<div class="misc">
-    <a href="#main"><span class="top font-asesome-icon">Top</span></a>
-</div>
-  
-
-
-
-			</main>
-		</div>
-		<footer id="colophon" class="site-footer">
-			<div class="site-info">
-				<span>powered by <a href="https://hexo.io/">Hexo</a>&nbsp;&nbsp; theme by <a href="https://github.com/Troy-Yang/hexo-theme-twentyfifteen-wordpress">Troy</a> &nbsp; inspired by <a href="https://wordpress.org/themes/">wordpress</a></span>
-			</div><!-- .site-info -->
-		</footer>
-	</div>
-	<!-- <div id="infinite-footer">
-            <div class="container">
-                <div class="blog-info">
-                    <a id="infinity-blog-title" href="#" rel="home" title="Scroll back to top">
-                         Happy Coding, Happy Life!
-                    </a>
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                    </div>
+                    
                 </div>
-                <div class="blog-credits">
-                <span></span>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>常用链接</li>
+                        
+                        
+                    </ul>
                 </div>
             </div>
-        </div> -->
-        <!-- #infinite-footer -->
-    <!-- After footer scripts -->
-    <script src="/js/jquery-3.1.1.min.js"></script>
-<script src="/js/main.js"></script>
+        
 
-    <!--referring from https://notes.wanghao.work/2015-10-21-%E4%B8%BANexT%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0%E6%96%87%E7%AB%A0%E9%98%85%E8%AF%BB%E9%87%8F%E7%BB%9F%E8%AE%A1%E5%8A%9F%E8%83%BD.html -->
-    <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
-    <script>
-        AV.initialize("GThaKb1tSpVOD6q4uExWej2u-gzGzoHsz", "B31FJeJ6CIix2v8rPIDM8KzA");
-    </script>
-    <script>
-        function showTime(Counter) {
-            var query = new AV.Query(Counter);
-            $(".leancloud_visitors").each(function () {
-                var url = $(this).attr("id").trim();
-                query.equalTo("url", url);
-                query.find({
-                    success: function (results) {
-                        if (results.length == 0) {
-                            var content = $(document.getElementById(url)).text() + ': 0';
-                            $(document.getElementById(url)).text(content);
-                            return;
-                        }
-                        for (var i = 0; i < results.length; i++) {
-                            var object = results[i];
-                            //var content = $(document.getElementById(url)).text() + ': ' + object.get('time');
-                            $(document.getElementById(url)).text(object.get('time'));
-                        }
-                    },
-                    error: function (object, error) {
-                        console.log("Error: " + error.code + " " + error.message);
-                    }
-                });
-            });
-        }
-        function addCount(Counter) {
-            var Counter = AV.Object.extend("Counter");
-            url = $(".leancloud_visitors").attr('id').trim();
-            title = $(".leancloud_visitors").attr('data-flag-title').trim();
-            var query = new AV.Query(Counter);
-            query.equalTo("url", url);
-            query.find({
-                success: function (results) {
-                    if (results.length > 0) {
-                        var counter = results[0];
-                        counter.fetchWhenSave(true);
-                        counter.increment("time");
-                        counter.save(null, {
-                            success: function (counter) {
-                                //var content = $(document.getElementById(url)).text() + ': ' + counter.get('time');
-                                // remove ': '
-                                $(document.getElementById(url)).text(counter.get('time'));
-                            },
-                            error: function (counter, error) {
-                                console.log('Failed to save Visitor num, with error message: ' + error.message);
-                            }
-                        });
-                    } else {
-                        var newcounter = new Counter();
-                        newcounter.set("title", title);
-                        newcounter.set("url", url);
-                        newcounter.set("time", 1);
-                        newcounter.save(null, {
-                            success: function (newcounter) {
-                                console.log("newcounter.get('time')=" + newcounter.get('time'));
-                                var content = $(document.getElementById(url)).text() + ': ' + newcounter.get('time');
-                                // remove ': '
-                                $(document.getElementById(url)).text(newcounter.get('time'));
-                            },
-                            error: function (newcounter, error) {
-                                console.log('Failed to create');
-                            }
-                        });
-                    }
-                },
-                error: function (error) {
-                    console.log('Error:' + error.code + " " + error.message);
-                }
-            });
-        }
-        $(function () {
-            var Counter = AV.Object.extend("Counter");
-            if ($('.leancloud_visitors').length == 1) {
-                addCount(Counter);
-            } else if ($('.post-title-link').length > 1) {
-                showTime(Counter);
-            }
-        });
-    </script>
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives">归档</a></li>
+                        
+                            <li><a href="/tags">标签</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:royongbin@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/ssttm169" title="GitHub"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vux/">Vux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编辑器/">编辑器</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://www.gitnavi.com/">程序员工具导航</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://techblog.pub/">原创技术博客大联盟</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://www.liaoxuefeng.com/">廖雪峰</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://www.ruanyifeng.com">阮一峰</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://coolshell.cn/">酷壳</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://www.phodal.com/">phodal</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://www.yangzhiping.com/">阳志平</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://ganchengyuan1990.github.io/blog/">时间追逐者</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://surmon.me/">surmon.me</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://mp.weixin.qq.com/debug/wxadoc/dev/">小程序</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://juejin.im">掘金</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://cuiqingcai.com/">崔庆才</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://www.54tianzhisheng.cn/">Zhisheng</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Tomtan</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Tomtan</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives">归档</a></li>
+                
+                    <li><a href="/tags">标签</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:royongbin@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/ssttm169" title="GitHub"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="常用链接" about="关于我"/>
+</nav>
+      <div class="body-wrap">
+  
+    <article id="[layout]-how-to-use-wechat-debug" class="article article-type-[layout]" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017-09-27-how-to-use-wechat-debug.html" class="article-date">
+      <time datetime="2017-09-27T10:21:40.000Z" itemprop="datePublished">2017-09-27</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
     
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017-09-27-how-to-use-wechat-debug.html">H5,移动端调试神器 微信web开发者工具</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p> 微信整合了社交，支付，自媒体等强大的功能，现在许多H5的网页都是通过微信的浏览的，所以在开发过程，是避免不了出现问题，但是在手机上浏览，我们是无法知道是哪里出错了。对于这个问题， 可以使用微信web开发者工具解决。</p>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/工具使用/">工具使用</a>
+    </div>
+
+
+      
+      
+        <p class="article-more-link">
+          <a href="/2017-09-27-how-to-use-wechat-debug.html#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="[layout]-how-to-be-a-man" class="article article-type-[layout]" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017-09-27-how-to-be-a-man.html" class="article-date">
+      <time datetime="2017-09-27T10:03:27.000Z" itemprop="datePublished">2017-09-27</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017-09-27-how-to-be-a-man.html">做人做事准则</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>1.不管发生什么事情，都不要乱发脾气，要冷静，想清楚之后，再做决定。<br>2.时间利用最大化，不浪费一分一秒。<br>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/个人成长/">个人成长</a>
+    </div>
+
+
+      
+      
+        <p class="article-more-link">
+          <a href="/2017-09-27-how-to-be-a-man.html#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="[layout]-hello-world" class="article article-type-[layout]" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017-09-27-hello-world.html" class="article-date">
+      <time datetime="2017-09-27T07:50:25.000Z" itemprop="datePublished">2017-09-27</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017-09-27-hello-world.html">设置contentEditable=&#34;true&#34;作为文本编辑器，定位光标解决办法</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>html部分</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"ql-editor ql-blank"</span> <span class="attr">id</span>=<span class="string">"myEditor"</span> <span class="attr">style</span>=<span class="string">"padding:10px;width: 100%;height: 100%;overflow-y: scroll;"</span> <span class="attr">contentEditable</span>=<span class="string">"true"</span> <span class="attr">data-placeholder</span>=<span class="string">"这里输入内容!"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/前端/">前端</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vux/">Vux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/编辑器/">编辑器</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2017-09-27-hello-world.html#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+  
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2017 Tomtan
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+    <script src="/js/GithubRepoWidget.js"></script>
+
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+             github: ".github-widget a", 
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
 </body>
 </html>
