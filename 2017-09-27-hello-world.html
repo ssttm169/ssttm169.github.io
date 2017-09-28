@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="Tomtan&#39;s Blog">
 <meta property="og:description" content="html部分 1&amp;lt;div class=&quot;ql-editor ql-blank&quot; id=&quot;myEditor&quot; style=&quot;padding:10px;width: 100%;height: 100%;overflow-y: scroll;&quot; contentEditable=&quot;true&quot; data-placeholder=&quot;这里输入内容!&quot;&amp;gt;&amp;lt;/div&amp;gt;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-28T07:03:44.714Z">
+<meta property="og:updated_time" content="2017-09-28T07:52:31.206Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设置contentEditable=&quot;true&quot;作为文本编辑器，定位光标解决办法">
 <meta name="twitter:description" content="html部分 1&amp;lt;div class=&quot;ql-editor ql-blank&quot; id=&quot;myEditor&quot; style=&quot;padding:10px;width: 100%;height: 100%;overflow-y: scroll;&quot; contentEditable=&quot;true&quot; data-placeholder=&quot;这里输入内容!&quot;&amp;gt;&amp;lt;/div&amp;gt;">
@@ -331,7 +331,10 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">getCaretCharacterOffsetWithin() &#123;</div><div class="line">    <span class="keyword">var</span> caretOffset = <span class="number">0</span>;</div><div class="line">    <span class="keyword">var</span> sel;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="keyword">this</span>.win.getSelection != <span class="string">"undefined"</span>) &#123;</div><div class="line">        sel = <span class="keyword">this</span>.win.getSelection();</div><div class="line">        <span class="keyword">if</span> (sel.rangeCount &gt; <span class="number">0</span>) &#123;</div><div class="line">            <span class="keyword">var</span> range = <span class="keyword">this</span>.win.getSelection().getRangeAt(<span class="number">0</span>);</div><div class="line">            <span class="keyword">var</span> preCaretRange = range.cloneRange();</div><div class="line">            preCaretRange.selectNodeContents(<span class="keyword">this</span>.editor);</div><div class="line">            preCaretRange.setEnd(range.endContainer, range.endOffset);</div><div class="line">            caretOffset = preCaretRange.toString().length;</div><div class="line">            <span class="keyword">this</span>.savedRange = range</div><div class="line">        &#125;</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> ( (sel = <span class="keyword">this</span>.doc.selection) &amp;&amp; sel.type != <span class="string">"Control"</span>) &#123;</div><div class="line">        <span class="keyword">var</span> textRange = sel.createRange();</div><div class="line">        <span class="keyword">var</span> preCaretTextRange = <span class="keyword">this</span>.doc.body.createTextRange();</div><div class="line">        preCaretTextRange.moveToElementText(<span class="keyword">this</span>.editor);</div><div class="line">        preCaretTextRange.setEndPoint(<span class="string">"EndToEnd"</span>, textRange);</div><div class="line">        caretOffset = preCaretTextRange.text.length;</div><div class="line">        <span class="keyword">this</span>.savedRange = textRange</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">this</span>.caretOffset = caretOffset;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>源代码使用Vue2 + Vux</p>
 <p>为了方便测试，源代码调用了Vux的WechatEmotion组件，在编辑器中插件图片。</p>
-<p><a href="https://github.com/ssttm169/tom-editor" target="_blank" rel="external">github源代码的网址</a></p>
+<p>github源代码的网址如下：</p>
+<div class="github-widget" data-repo="ssttm169/tom-editor"></div>
+
+
 
       
     </div>
@@ -343,7 +346,7 @@
         <p><span>本文标题:</span><a href="/2017-09-27-hello-world.html">设置contentEditable=&#34;true&#34;作为文本编辑器，定位光标解决办法</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Tomtan</a></p>
         <p><span>发布时间:</span>2017-09-27, 15:50:25</p>
-        <p><span>最后更新:</span>2017-09-28, 15:03:44</p>
+        <p><span>最后更新:</span>2017-09-28, 15:52:31</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2017-09-27-hello-world.html" title="设置contentEditable=&#34;true&#34;作为文本编辑器，定位光标解决办法">http://www.itomtan.com/2017-09-27-hello-world.html</a>
             <span class="copy-path" data-clipboard-text="原文: http://www.itomtan.com/2017-09-27-hello-world.html　　作者: Tomtan" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
