@@ -9,12 +9,12 @@
 <a id="more"></a>
 <p>名称为：wechat_web_devtools_0.7.0_x64.exe。</p>
 <p>打开工具之后, 打开微信，扫码登陆</p>
-<p><img src="http://images2017.cnblogs.com/blog/99430/201708/99430-20170809175359011-1339811111.png" alt="img"></p>
+<p><img src="/img/1792701/1.png" alt="1"></p>
 <p>登录成功之后，点击移动调试，按照里边说明所示，</p>
-<p><img src="http://images2017.cnblogs.com/blog/99430/201708/99430-20170809175038027-1822739564.png" alt="img"></p>
-<p><img src="http://images2017.cnblogs.com/blog/99430/201708/99430-20170809175257824-339466989.png" alt="img"></p>
+<p><img src="/img/1792701/2.png" alt="1"></p>
+<p><img src="/img/1792701/3.png" alt="1"></p>
 <p>手机设置成功之后，点击 开始调试</p>
-<p><img src="http://images2017.cnblogs.com/blog/99430/201708/99430-20170809175955527-1564391361.png" alt="img"></p>
+<p><img src="/img/1792701/4.png" alt="1"></p>
 <p><strong>注意，如果系统提示你升级，千万不要升级，新版删除移动调试的功能：</strong></p>
 <p>如果你找不到安装文件，我这里提供一下</p>
 <div class="github-widget" data-repo="ssttm169/wechat_web_devtools_0.7.0_x64"></div>
