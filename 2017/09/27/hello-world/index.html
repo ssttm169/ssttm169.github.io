@@ -15,22 +15,18 @@
 
 
 
-<meta name="description" content="微信整合了社交，支付，自媒体等强大的功能，现在许多H5的网页都是通过微信的浏览的，所以在开发过程，是避免不了出现问题，但是在手机上浏览，我们是无法知道是哪里出错了。对于这个问题， 可以使用微信web开发者工具解决。">
+<meta name="description" content="html部分 1&amp;lt;div class=&quot;ql-editor ql-blank&quot; id=&quot;myEditor&quot; style=&quot;padding:10px;width: 100%;height: 100%;overflow-y: scroll;&quot; contentEditable=&quot;true&quot; data-placeholder=&quot;这里输入内容!&quot;&amp;gt;&amp;lt;/div&amp;gt;">
+<meta name="keywords" content="Vue,编辑器,Vux,前端">
 <meta property="og:type" content="article">
-<meta property="og:title" content="H5,移动端调试神器 微信web开发者工具">
-<meta property="og:url" content="http://www.itomtan.com/2017-09-27-how-to-use-wechat-debug.html">
+<meta property="og:title" content="设置contentEditable=&quot;true&quot;作为文本编辑器，定位光标解决办法">
+<meta property="og:url" content="http://www.itomtan.com/2017/09/27/hello-world/index.html">
 <meta property="og:site_name" content="Tomtan&#39;s Blog">
-<meta property="og:description" content="微信整合了社交，支付，自媒体等强大的功能，现在许多H5的网页都是通过微信的浏览的，所以在开发过程，是避免不了出现问题，但是在手机上浏览，我们是无法知道是哪里出错了。对于这个问题， 可以使用微信web开发者工具解决。">
+<meta property="og:description" content="html部分 1&amp;lt;div class=&quot;ql-editor ql-blank&quot; id=&quot;myEditor&quot; style=&quot;padding:10px;width: 100%;height: 100%;overflow-y: scroll;&quot; contentEditable=&quot;true&quot; data-placeholder=&quot;这里输入内容!&quot;&amp;gt;&amp;lt;/div&amp;gt;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://www.itomtan.com/img/1792701/1.png">
-<meta property="og:image" content="http://www.itomtan.com/img/1792701/2.png">
-<meta property="og:image" content="http://www.itomtan.com/img/1792701/3.png">
-<meta property="og:image" content="http://www.itomtan.com/img/1792701/4.png">
-<meta property="og:updated_time" content="2017-09-28T09:23:24.079Z">
+<meta property="og:updated_time" content="2017-09-28T07:52:31.206Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="H5,移动端调试神器 微信web开发者工具">
-<meta name="twitter:description" content="微信整合了社交，支付，自媒体等强大的功能，现在许多H5的网页都是通过微信的浏览的，所以在开发过程，是避免不了出现问题，但是在手机上浏览，我们是无法知道是哪里出错了。对于这个问题， 可以使用微信web开发者工具解决。">
-<meta name="twitter:image" content="http://www.itomtan.com/img/1792701/1.png">
+<meta name="twitter:title" content="设置contentEditable=&quot;true&quot;作为文本编辑器，定位光标解决办法">
+<meta name="twitter:description" content="html部分 1&amp;lt;div class=&quot;ql-editor ql-blank&quot; id=&quot;myEditor&quot; style=&quot;padding:10px;width: 100%;height: 100%;overflow-y: scroll;&quot; contentEditable=&quot;true&quot; data-placeholder=&quot;这里输入内容!&quot;&amp;gt;&amp;lt;/div&amp;gt;">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -60,7 +56,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>H5,移动端调试神器 微信web开发者工具 | Tomtan&#39;s Blog</title>
+<title>设置contentEditable=&#34;true&#34;作为文本编辑器，定位光标解决办法 | Tomtan&#39;s Blog</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -197,7 +193,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vux/">Vux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编辑器/">编辑器</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vux/">Vux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编辑器/">编辑器</a></li></ul>
                     </div>
                 </section>
                 
@@ -286,11 +282,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="常用链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="[layout]-how-to-use-wechat-debug" class="article article-type-[layout]" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="[layout]-hello-world" class="article article-type-[layout]" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2017-09-27-how-to-use-wechat-debug.html" class="article-date">
-      <time datetime="2017-09-27T10:21:40.000Z" itemprop="datePublished">2017-09-27</time>
+      <a href="/2017/09/27/hello-world/" class="article-date">
+      <time datetime="2017-09-27T07:50:25.000Z" itemprop="datePublished">2017-09-27</time>
 </a>
 
 
@@ -305,7 +301,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      H5,移动端调试神器 微信web开发者工具
+      设置contentEditable=&#34;true&#34;作为文本编辑器，定位光标解决办法
     </h1>
   
 
@@ -314,11 +310,15 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/工具使用/">工具使用</a>
+    <a class="article-category-link" href="/categories/前端/">前端</a>
     </div>
 
 
         
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vux/">Vux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/编辑器/">编辑器</a></li></ul>
+    </div>
+
         <div class="clearfix"></div>
       </div>
       
@@ -326,20 +326,17 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p> 微信整合了社交，支付，自媒体等强大的功能，现在许多H5的网页都是通过微信的浏览的，所以在开发过程，是避免不了出现问题，但是在手机上浏览，我们是无法知道是哪里出错了。对于这个问题， 可以使用微信web开发者工具解决。</p>
+        <p>html部分</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"ql-editor ql-blank"</span> <span class="attr">id</span>=<span class="string">"myEditor"</span> <span class="attr">style</span>=<span class="string">"padding:10px;width: 100%;height: 100%;overflow-y: scroll;"</span> <span class="attr">contentEditable</span>=<span class="string">"true"</span> <span class="attr">data-placeholder</span>=<span class="string">"这里输入内容!"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
 <a id="more"></a>
-<p>名称为：wechat_web_devtools_0.7.0_x64.exe。</p>
-<p>打开工具之后, 打开微信，扫码登陆</p>
-<p><img src="/img/1792701/1.png" alt="扫码登陆"></p>
-<p>登录成功之后，点击移动调试，按照里边说明所示，</p>
-<p><img src="/img/1792701/2.png" alt="点击移动调试"></p>
-<p><img src="/img/1792701/3.png" alt="按照里边说明所示"></p>
-<p>手机设置成功之后，点击 开始调试</p>
-<p><img src="/img/1792701/4.png" alt="开始调试"></p>
-<p><strong>注意，如果系统提示你升级，千万不要升级，新版删除移动调试的功能：</strong></p>
-<p>如果你找不到安装文件，我这里提供一下</p>
-<div class="github-widget" data-repo="ssttm169/wechat_web_devtools_0.7.0_x64"></div>
-
+<p>设置焦点</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">setCaretPosition() &#123;</div><div class="line">    <span class="keyword">var</span> sel;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.savedRange != <span class="literal">null</span>) &#123;</div><div class="line"></div><div class="line">        sel = <span class="keyword">this</span>.win.getSelection();</div><div class="line">        <span class="keyword">if</span> (sel.rangeCount &gt; <span class="number">0</span>)</div><div class="line">            sel.removeAllRanges();</div><div class="line">        sel.addRange(<span class="keyword">this</span>.savedRange);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span> ( (sel = <span class="keyword">this</span>.doc.selection) &amp;&amp; sel.type != <span class="string">"Control"</span>)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">this</span>.win.getSelection().addRange(<span class="keyword">this</span>.savedRange);</div><div class="line">    &#125;</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
+<p>获取焦点</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">getCaretCharacterOffsetWithin() &#123;</div><div class="line">    <span class="keyword">var</span> caretOffset = <span class="number">0</span>;</div><div class="line">    <span class="keyword">var</span> sel;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="keyword">this</span>.win.getSelection != <span class="string">"undefined"</span>) &#123;</div><div class="line">        sel = <span class="keyword">this</span>.win.getSelection();</div><div class="line">        <span class="keyword">if</span> (sel.rangeCount &gt; <span class="number">0</span>) &#123;</div><div class="line">            <span class="keyword">var</span> range = <span class="keyword">this</span>.win.getSelection().getRangeAt(<span class="number">0</span>);</div><div class="line">            <span class="keyword">var</span> preCaretRange = range.cloneRange();</div><div class="line">            preCaretRange.selectNodeContents(<span class="keyword">this</span>.editor);</div><div class="line">            preCaretRange.setEnd(range.endContainer, range.endOffset);</div><div class="line">            caretOffset = preCaretRange.toString().length;</div><div class="line">            <span class="keyword">this</span>.savedRange = range</div><div class="line">        &#125;</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> ( (sel = <span class="keyword">this</span>.doc.selection) &amp;&amp; sel.type != <span class="string">"Control"</span>) &#123;</div><div class="line">        <span class="keyword">var</span> textRange = sel.createRange();</div><div class="line">        <span class="keyword">var</span> preCaretTextRange = <span class="keyword">this</span>.doc.body.createTextRange();</div><div class="line">        preCaretTextRange.moveToElementText(<span class="keyword">this</span>.editor);</div><div class="line">        preCaretTextRange.setEndPoint(<span class="string">"EndToEnd"</span>, textRange);</div><div class="line">        caretOffset = preCaretTextRange.text.length;</div><div class="line">        <span class="keyword">this</span>.savedRange = textRange</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">this</span>.caretOffset = caretOffset;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>源代码使用Vue2 + Vux</p>
+<p>为了方便测试，源代码调用了Vux的WechatEmotion组件，在编辑器中插件图片。</p>
+<p>github源代码的网址如下：</p>
+<div class="github-widget" data-repo="ssttm169/tom-editor"></div>
 
 
 
@@ -350,13 +347,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2017-09-27-how-to-use-wechat-debug.html">H5,移动端调试神器 微信web开发者工具</a></p>
+        <p><span>本文标题:</span><a href="/2017/09/27/hello-world/">设置contentEditable=&#34;true&#34;作为文本编辑器，定位光标解决办法</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Tomtan</a></p>
-        <p><span>发布时间:</span>2017-09-27, 18:21:40</p>
-        <p><span>最后更新:</span>2017-09-28, 17:23:24</p>
+        <p><span>发布时间:</span>2017-09-27, 15:50:25</p>
+        <p><span>最后更新:</span>2017-09-28, 15:52:31</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2017-09-27-how-to-use-wechat-debug.html" title="H5,移动端调试神器 微信web开发者工具">http://www.itomtan.com/2017-09-27-how-to-use-wechat-debug.html</a>
-            <span class="copy-path" data-clipboard-text="原文: http://www.itomtan.com/2017-09-27-how-to-use-wechat-debug.html　　作者: Tomtan" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2017/09/27/hello-world/" title="设置contentEditable=&#34;true&#34;作为文本编辑器，定位光标解决办法">http://www.itomtan.com/2017/09/27/hello-world/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://www.itomtan.com/2017/09/27/hello-world/　　作者: Tomtan" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -368,12 +365,12 @@
 
     <nav id="article-nav">
         
-        
-            <div id="article-nav-older" class="article-nav-title">
-                <a href="/2017-09-27-how-to-be-a-man.html">
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2017/09/27/how-to-be-a-man/">
                     做人做事准则
                 </a>
             </div>
+        
         
     </nav>
 
@@ -414,19 +411,19 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+            <a href="/2017/09/27/how-to-be-a-man/" title="上一篇: 做人做事准则">
+                <i class="fa fa-angle-left"></i>
+            </a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2017-09-27-how-to-be-a-man.html" title="下一篇: 做人做事准则">
-                <i class="fa fa-angle-right"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017-09-27-how-to-use-wechat-debug.html">H5,移动端调试神器 微信web开发者工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2017-09-27-how-to-be-a-man.html">做人做事准则</a></li><li class="post-list-item"><a class="post-list-link" href="/2017-09-27-hello-world.html">设置contentEditable="true"作为文本编辑器，定位光标解决办法</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/09/29/the-problem-when-use-post-asset-folder/">Hexo开启post_asset_folder后, 安装hexo-asset-image,不起作用的问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/27/how-to-use-wechat-debug/">H5,移动端调试神器 微信web开发者工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/27/how-to-be-a-man/">做人做事准则</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/27/hello-world/">设置contentEditable="true"作为文本编辑器，定位光标解决办法</a></li></ul>
 
 
 

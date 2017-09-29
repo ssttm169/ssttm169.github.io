@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+
+    
+    
+  <url>
+    <loc>http://www.itomtan.com/2017/09/29/the-problem-when-use-post-asset-folder/</loc>
+    <lastmod>2017-09-29T08:59:29.758Z</lastmod>
+    <data>
+        <display>
+        <title>Hexo开启post_asset_folder后, 安装hexo-asset-image,不起作用的问题</title>
+        <pubTime>2017-09-29T07:21:02.000Z</pubTime>
+        
+        <tag>Hexo</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端" url="http://www.itomtan.com/categories/%E5%89%8D%E7%AB%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.itomtan.com/2017/09/27/how-to-use-wechat-debug/</loc>
+    <lastmod>2017-09-29T08:48:01.029Z</lastmod>
+    <data>
+        <display>
+        <title>H5,移动端调试神器 微信web开发者工具</title>
+        <pubTime>2017-09-27T10:21:40.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="工具使用" url="http://www.itomtan.com/categories/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.itomtan.com/2017/09/27/hello-world/</loc>
+    <lastmod>2017-09-28T07:52:31.206Z</lastmod>
+    <data>
+        <display>
+        <title>设置contentEditable="true"作为文本编辑器，定位光标解决办法</title>
+        <pubTime>2017-09-27T07:50:25.000Z</pubTime>
+        
+        <tag>Vue</tag>
+         
+        <tag>编辑器</tag>
+         
+        <tag>Vux</tag>
+         
+        <tag>前端</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端" url="http://www.itomtan.com/categories/%E5%89%8D%E7%AB%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.itomtan.com/2017/09/27/how-to-be-a-man/</loc>
+    <lastmod>2017-09-28T07:03:19.019Z</lastmod>
+    <data>
+        <display>
+        <title>做人做事准则</title>
+        <pubTime>2017-09-27T10:03:27.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="个人成长" url="http://www.itomtan.com/categories/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+    
+</urlset>

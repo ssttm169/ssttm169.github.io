@@ -15,18 +15,34 @@
 
 
 
-<meta name="description" content="html部分 1&amp;lt;div class=&quot;ql-editor ql-blank&quot; id=&quot;myEditor&quot; style=&quot;padding:10px;width: 100%;height: 100%;overflow-y: scroll;&quot; contentEditable=&quot;true&quot; data-placeholder=&quot;这里输入内容!&quot;&amp;gt;&amp;lt;/div&amp;gt;">
-<meta name="keywords" content="Vue,编辑器,Vux,前端">
+<meta name="description" content="使用Hexo和github搭建博客，真是挺有趣的事情，因为于我们来说，随便敲几行代码，就可以拥有一个非常漂亮的博客。 但在写作的过程中，使用Typora(一个markdown编辑器)插入图片的时候，非常不顺手。后来了解到用hexo-asset-image可以提升我的写作效率,,所以开干。">
+<meta name="keywords" content="Hexo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="设置contentEditable=&quot;true&quot;作为文本编辑器，定位光标解决办法">
-<meta property="og:url" content="http://www.itomtan.com/2017-09-27-hello-world.html">
+<meta property="og:title" content="Hexo开启post_asset_folder后, 安装hexo-asset-image,不起作用的问题">
+<meta property="og:url" content="http://www.itomtan.com/2017/09/29/the-problem-when-use-post-asset-folder/index.html">
 <meta property="og:site_name" content="Tomtan&#39;s Blog">
-<meta property="og:description" content="html部分 1&amp;lt;div class=&quot;ql-editor ql-blank&quot; id=&quot;myEditor&quot; style=&quot;padding:10px;width: 100%;height: 100%;overflow-y: scroll;&quot; contentEditable=&quot;true&quot; data-placeholder=&quot;这里输入内容!&quot;&amp;gt;&amp;lt;/div&amp;gt;">
+<meta property="og:description" content="使用Hexo和github搭建博客，真是挺有趣的事情，因为于我们来说，随便敲几行代码，就可以拥有一个非常漂亮的博客。 但在写作的过程中，使用Typora(一个markdown编辑器)插入图片的时候，非常不顺手。后来了解到用hexo-asset-image可以提升我的写作效率,,所以开干。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-28T07:52:31.206Z">
+<meta property="og:image" content="http://www.itomtan.com/2017/09/29/the-problem-when-use-post-asset-folder/1.png">
+<meta property="og:image" content="http://www.itomtan.com/2017/09/29/the-problem-when-use-post-asset-folder/2.png">
+<meta property="og:image" content="http://www.itomtan.com/2017/09/29/the-problem-when-use-post-asset-folder/3.png">
+<meta property="og:image" content="http://www.itomtan.com/2017/09/29/the-problem-when-use-post-asset-folder/4.png">
+<meta property="og:image" content="http://www.itomtan.com/2017/09/29/the-problem-when-use-post-asset-folder/5.png">
+<meta property="og:image" content="http://www.itomtan.com/2017/09/29/the-problem-when-use-post-asset-folder/6.png">
+<meta property="og:image" content="http://www.itomtan.com/2017/09/29/the-problem-when-use-post-asset-folder/7.png">
+<meta property="og:image" content="http://www.itomtan.com/2017/09/29/the-problem-when-use-post-asset-folder/8.png">
+<meta property="og:image" content="http://www.itomtan.com/2017/09/29/the-problem-when-use-post-asset-folder/9.png">
+<meta property="og:image" content="http://www.itomtan.com/2017/09/29/the-problem-when-use-post-asset-folder/10.png">
+<meta property="og:image" content="http://www.itomtan.com/2017/09/29/the-problem-when-use-post-asset-folder/11.png">
+<meta property="og:image" content="http://www.itomtan.com/2017/09/29/the-problem-when-use-post-asset-folder/12.png">
+<meta property="og:image" content="http://www.itomtan.com/2017/09/29/the-problem-when-use-post-asset-folder/13.png">
+<meta property="og:image" content="http://www.itomtan.com/2017/09/29/the-problem-when-use-post-asset-folder/14.png">
+<meta property="og:image" content="http://www.itomtan.com/2017/09/29/the-problem-when-use-post-asset-folder/15.png">
+<meta property="og:updated_time" content="2017-09-29T08:59:29.758Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="设置contentEditable=&quot;true&quot;作为文本编辑器，定位光标解决办法">
-<meta name="twitter:description" content="html部分 1&amp;lt;div class=&quot;ql-editor ql-blank&quot; id=&quot;myEditor&quot; style=&quot;padding:10px;width: 100%;height: 100%;overflow-y: scroll;&quot; contentEditable=&quot;true&quot; data-placeholder=&quot;这里输入内容!&quot;&amp;gt;&amp;lt;/div&amp;gt;">
+<meta name="twitter:title" content="Hexo开启post_asset_folder后, 安装hexo-asset-image,不起作用的问题">
+<meta name="twitter:description" content="使用Hexo和github搭建博客，真是挺有趣的事情，因为于我们来说，随便敲几行代码，就可以拥有一个非常漂亮的博客。 但在写作的过程中，使用Typora(一个markdown编辑器)插入图片的时候，非常不顺手。后来了解到用hexo-asset-image可以提升我的写作效率,,所以开干。">
+<meta name="twitter:image" content="http://www.itomtan.com/2017/09/29/the-problem-when-use-post-asset-folder/1.png">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -56,7 +72,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>设置contentEditable=&#34;true&#34;作为文本编辑器，定位光标解决办法 | Tomtan&#39;s Blog</title>
+<title>Hexo开启post_asset_folder后, 安装hexo-asset-image,不起作用的问题 | Tomtan&#39;s Blog</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -193,7 +209,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vux/">Vux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编辑器/">编辑器</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vux/">Vux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编辑器/">编辑器</a></li></ul>
                     </div>
                 </section>
                 
@@ -282,11 +298,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="常用链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="[layout]-hello-world" class="article article-type-[layout]" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="[layout]-the-problem-when-use-post-asset-folder" class="article article-type-[layout]" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2017-09-27-hello-world.html" class="article-date">
-      <time datetime="2017-09-27T07:50:25.000Z" itemprop="datePublished">2017-09-27</time>
+      <a href="/2017/09/29/the-problem-when-use-post-asset-folder/" class="article-date">
+      <time datetime="2017-09-29T07:21:02.000Z" itemprop="datePublished">2017-09-29</time>
 </a>
 
 
@@ -301,7 +317,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      设置contentEditable=&#34;true&#34;作为文本编辑器，定位光标解决办法
+      Hexo开启post_asset_folder后, 安装hexo-asset-image,不起作用的问题
     </h1>
   
 
@@ -316,7 +332,7 @@
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vux/">Vux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/编辑器/">编辑器</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -326,20 +342,108 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>html部分</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"ql-editor ql-blank"</span> <span class="attr">id</span>=<span class="string">"myEditor"</span> <span class="attr">style</span>=<span class="string">"padding:10px;width: 100%;height: 100%;overflow-y: scroll;"</span> <span class="attr">contentEditable</span>=<span class="string">"true"</span> <span class="attr">data-placeholder</span>=<span class="string">"这里输入内容!"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+        <p>使用Hexo和github搭建博客，真是挺有趣的事情，因为于我们来说，随便敲几行代码，就可以拥有一个非常漂亮的博客。 但在写作的过程中，使用Typora(一个markdown编辑器)插入图片的时候，非常不顺手。后来了解到用hexo-asset-image可以提升我的写作效率,,所以开干。</p>
 <a id="more"></a>
-<p>设置焦点</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">setCaretPosition() &#123;</div><div class="line">    <span class="keyword">var</span> sel;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.savedRange != <span class="literal">null</span>) &#123;</div><div class="line"></div><div class="line">        sel = <span class="keyword">this</span>.win.getSelection();</div><div class="line">        <span class="keyword">if</span> (sel.rangeCount &gt; <span class="number">0</span>)</div><div class="line">            sel.removeAllRanges();</div><div class="line">        sel.addRange(<span class="keyword">this</span>.savedRange);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span> ( (sel = <span class="keyword">this</span>.doc.selection) &amp;&amp; sel.type != <span class="string">"Control"</span>)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">this</span>.win.getSelection().addRange(<span class="keyword">this</span>.savedRange);</div><div class="line">    &#125;</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
-<p>获取焦点</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">getCaretCharacterOffsetWithin() &#123;</div><div class="line">    <span class="keyword">var</span> caretOffset = <span class="number">0</span>;</div><div class="line">    <span class="keyword">var</span> sel;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="keyword">this</span>.win.getSelection != <span class="string">"undefined"</span>) &#123;</div><div class="line">        sel = <span class="keyword">this</span>.win.getSelection();</div><div class="line">        <span class="keyword">if</span> (sel.rangeCount &gt; <span class="number">0</span>) &#123;</div><div class="line">            <span class="keyword">var</span> range = <span class="keyword">this</span>.win.getSelection().getRangeAt(<span class="number">0</span>);</div><div class="line">            <span class="keyword">var</span> preCaretRange = range.cloneRange();</div><div class="line">            preCaretRange.selectNodeContents(<span class="keyword">this</span>.editor);</div><div class="line">            preCaretRange.setEnd(range.endContainer, range.endOffset);</div><div class="line">            caretOffset = preCaretRange.toString().length;</div><div class="line">            <span class="keyword">this</span>.savedRange = range</div><div class="line">        &#125;</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> ( (sel = <span class="keyword">this</span>.doc.selection) &amp;&amp; sel.type != <span class="string">"Control"</span>) &#123;</div><div class="line">        <span class="keyword">var</span> textRange = sel.createRange();</div><div class="line">        <span class="keyword">var</span> preCaretTextRange = <span class="keyword">this</span>.doc.body.createTextRange();</div><div class="line">        preCaretTextRange.moveToElementText(<span class="keyword">this</span>.editor);</div><div class="line">        preCaretTextRange.setEndPoint(<span class="string">"EndToEnd"</span>, textRange);</div><div class="line">        caretOffset = preCaretTextRange.text.length;</div><div class="line">        <span class="keyword">this</span>.savedRange = textRange</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">this</span>.caretOffset = caretOffset;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>源代码使用Vue2 + Vux</p>
-<p>为了方便测试，源代码调用了Vux的WechatEmotion组件，在编辑器中插件图片。</p>
-<p>github源代码的网址如下：</p>
-<div class="github-widget" data-repo="ssttm169/tom-editor"></div>
+<p><br></p>
+<h4 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h4><p>在nodejs里边安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install hexo-asset-image --save</div></pre></td></tr></table></figure>
+<div align="center"><br><img src="/2017/09/29/the-problem-when-use-post-asset-folder/1.png" alt="安装hexo-asset-image"><br></div>
+
+
+<p><br></p>
+<p>把在hexo根目下的_config.yml设置</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">post_asset_folder: true</div></pre></td></tr></table></figure>
+<p><br></p>
+<h4 id="新建文章"><a href="#新建文章" class="headerlink" title="新建文章"></a>新建文章</h4><p>安装完了之后，新建一篇名为test-img的文章</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo new [layout] test-img</div></pre></td></tr></table></figure>
+<div align="center"><br><br><img src="/2017/09/29/the-problem-when-use-post-asset-folder/2.png" alt=""><br><br></div>
 
 
 
+<p>  <br></p>
+<p>现在可以看到source/_posts里边，除了有test-img.md，还多一个文件夹 test-img</p>
+<div align="center"><br><br><img src="/2017/09/29/the-problem-when-use-post-asset-folder/3.png" alt=""></div>
+
+
+
+<p><br></p>
+<p>在里边我放一张名为me.jpg的图片, 插入图片的时候，输入  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">![](test-img/me.jpg)</div></pre></td></tr></table></figure>
+<p>如图所示：</p>
+<div align="center"><img src="/2017/09/29/the-problem-when-use-post-asset-folder/4.png" alt=""></div>
+
+
+
+<p><br></p>
+<h4 id="发现问题"><a href="#发现问题" class="headerlink" title="发现问题"></a>发现问题</h4><p>当我回到nodejs的时候，发现不对劲~</p>
+<div align="center"><img src="/2017/09/29/the-problem-when-use-post-asset-folder/5.png" alt=""></div>
+
+
+
+<p><br></p>
+<p>然后，我去页面看，图片不显示， chrome-devtools显示，找不到图片。</p>
+<div align="center"><img src="/2017/09/29/the-problem-when-use-post-asset-folder/6.png" alt=""></div>
+
+
+
+<p><br></p>
+<p>当我用hexo g生成文件的时候，发现报错， 如下：</p>
+<div align="center"><img src="/2017/09/29/the-problem-when-use-post-asset-folder/7.png" alt=""></div>
+
+<p>FATAL something’s wrong. May be you can find the solution here…..</p>
+<p>Error: ENOENT: no such file or directory, open ‘D:\nodejs6.5\hexo_blog\public\20<br>17-09-29-test-img.html\me.jpg’  </p>
+<p>仔细一看路径是</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">\public\2017-09-29-test-img.html\me.jpg</div></pre></td></tr></table></figure>
+<p><br></p>
+<p>在public文件夹里边也找不到2017-09-29-test-img.html文件夹。</p>
+<div align="center"><img src="/2017/09/29/the-problem-when-use-post-asset-folder/8.png" alt=""></div>
+
+
+
+<p><br></p>
+<p>百思不得期解，我了解别人的博客都是的链接都是       域名/年份/月份/文件名  的路径， 比如：<a href="http://www.54tianzhisheng.cn/2017/09/23/Guava-limit/" target="_blank" rel="external">http://www.54tianzhisheng.cn/2017/09/23/Guava-limit/</a></p>
+<div align="center"><img src="/2017/09/29/the-problem-when-use-post-asset-folder/9.png" alt=""></div>
+
+
+
+<p><br></p>
+<p>而且我的路径是 <a href="http://www.itomtan.com/2017-09-27-how-to-use-wechat-debug.html，">http://www.itomtan.com/2017-09-27-how-to-use-wechat-debug.html，</a> 所有的html都是放到</p>
+<div align="center"><img src="/2017/09/29/the-problem-when-use-post-asset-folder/10.png" alt=""></div>
+
+
+
+<p><br></p>
+<h4 id="找到原因"><a href="#找到原因" class="headerlink" title="找到原因"></a>找到原因</h4><p>为了满意的我好奇心~~，最终我找到了原因。原来，之前我把hexo根目下的_config.yml， 把permalink 设置为 year-:month-:day-:title.html，hexo就会在根目下生成html, 而导致 生成 相关的文件夹失效。</p>
+<div align="center"><img src="/2017/09/29/the-problem-when-use-post-asset-folder/11.png" alt=""></div>
+
+
+
+<p>是 permalink 和 post_asset_folder 这两个参数是相互影响的。</p>
+<p><br></p>
+<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p>把hexo根目下的_config.yml， 把permalink 设置为 :year/:month/:day/:title/</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">permalink: :year/:month/:day/:title/</div></pre></td></tr></table></figure>
+<p>好，重新hexo clean &amp;&amp; hexo g , 得到的就是我们要的那种方路径，而且图片显示正常了。</p>
+<div align="center"><img src="/2017/09/29/the-problem-when-use-post-asset-folder/12.png" alt=""></div>
+
+
+
+<p><br></p>
+<p>温馨提示一下：</p>
+<p>用Typora插入图片时  输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">![](文件名.png)</div></pre></td></tr></table></figure>
+<p>的时候，虽然在图片网页上能够正常显示，但是在Typora编辑时无法显示，那如何才能让Typora正常显示呢? 这里分享一个小技巧：</p>
+<p>在Typora中, 选择Edit &gt; Image Tools &gt;  Use Image Root Path， 然后选择你要的相关文件夹，选择之后，在md文件头上 会多一个 typora-root-url: xxxx, 好了，现在可以正常显示了。具体操作看下图。</p>
+<div align="center"><img src="/2017/09/29/the-problem-when-use-post-asset-folder/13.png" alt=""></div>
+
+<p><br></p>
+<div align="center"><img src="/2017/09/29/the-problem-when-use-post-asset-folder/14.png" alt=""></div>
+
+<p><br></p>
+<div align="center"><img src="/2017/09/29/the-problem-when-use-post-asset-folder/15.png" alt=""></div>
+
+<p><br></p>
+<p>最后，分享一下源代码：</p>
+<div class="github-widget" data-repo="ssttm169/hexo_blog"></div>
       
     </div>
     
@@ -347,13 +451,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2017-09-27-hello-world.html">设置contentEditable=&#34;true&#34;作为文本编辑器，定位光标解决办法</a></p>
+        <p><span>本文标题:</span><a href="/2017/09/29/the-problem-when-use-post-asset-folder/">Hexo开启post_asset_folder后, 安装hexo-asset-image,不起作用的问题</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Tomtan</a></p>
-        <p><span>发布时间:</span>2017-09-27, 15:50:25</p>
-        <p><span>最后更新:</span>2017-09-28, 15:52:31</p>
+        <p><span>发布时间:</span>2017-09-29, 15:21:02</p>
+        <p><span>最后更新:</span>2017-09-29, 16:59:29</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2017-09-27-hello-world.html" title="设置contentEditable=&#34;true&#34;作为文本编辑器，定位光标解决办法">http://www.itomtan.com/2017-09-27-hello-world.html</a>
-            <span class="copy-path" data-clipboard-text="原文: http://www.itomtan.com/2017-09-27-hello-world.html　　作者: Tomtan" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2017/09/29/the-problem-when-use-post-asset-folder/" title="Hexo开启post_asset_folder后, 安装hexo-asset-image,不起作用的问题">http://www.itomtan.com/2017/09/29/the-problem-when-use-post-asset-folder/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://www.itomtan.com/2017/09/29/the-problem-when-use-post-asset-folder/　　作者: Tomtan" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -365,12 +469,12 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2017-09-27-how-to-be-a-man.html">
-                    做人做事准则
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2017/09/27/how-to-use-wechat-debug/">
+                    H5,移动端调试神器 微信web开发者工具
                 </a>
             </div>
-        
         
     </nav>
 
@@ -380,7 +484,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            
+            <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#安装插件"><span class="toc-number">1.</span> <span class="toc-text">安装插件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#新建文章"><span class="toc-number">2.</span> <span class="toc-text">新建文章</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#发现问题"><span class="toc-number">3.</span> <span class="toc-text">发现问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#找到原因"><span class="toc-number">4.</span> <span class="toc-text">找到原因</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#解决方案"><span class="toc-number">5.</span> <span class="toc-text">解决方案</span></a></li></ol>
         
     </div>
     <style>
@@ -411,19 +515,19 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2017-09-27-how-to-be-a-man.html" title="上一篇: 做人做事准则">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+            <a href="/2017/09/27/how-to-use-wechat-debug/" title="下一篇: H5,移动端调试神器 微信web开发者工具">
+                <i class="fa fa-angle-right"></i>
+            </a>
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017-09-27-how-to-use-wechat-debug.html">H5,移动端调试神器 微信web开发者工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2017-09-27-how-to-be-a-man.html">做人做事准则</a></li><li class="post-list-item"><a class="post-list-link" href="/2017-09-27-hello-world.html">设置contentEditable="true"作为文本编辑器，定位光标解决办法</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/09/29/the-problem-when-use-post-asset-folder/">Hexo开启post_asset_folder后, 安装hexo-asset-image,不起作用的问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/27/how-to-use-wechat-debug/">H5,移动端调试神器 微信web开发者工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/27/how-to-be-a-man/">做人做事准则</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/27/hello-world/">设置contentEditable="true"作为文本编辑器，定位光标解决办法</a></li></ul>
 
 
 

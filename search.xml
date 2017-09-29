@@ -3,18 +3,139 @@
   
     
     <entry>
+      <title><![CDATA[Hexo开启post_asset_folder后, 安装hexo-asset-image,不起作用的问题]]></title>
+      <url>/2017/09/29/the-problem-when-use-post-asset-folder/</url>
+      <content type="html"><![CDATA[<p>使用Hexo和github搭建博客，真是挺有趣的事情，因为于我们来说，随便敲几行代码，就可以拥有一个非常漂亮的博客。 但在写作的过程中，使用Typora(一个markdown编辑器)插入图片的时候，非常不顺手。后来了解到用hexo-asset-image可以提升我的写作效率,,所以开干。</p>
+<a id="more"></a>
+<p><br></p>
+<h4 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h4><p>在nodejs里边安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install hexo-asset-image --save</div></pre></td></tr></table></figure>
+<div align="center"><br><img src="/2017/09/29/the-problem-when-use-post-asset-folder/1.png" alt="安装hexo-asset-image"><br></div>
+
+
+<p><br></p>
+<p>把在hexo根目下的_config.yml设置</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">post_asset_folder: true</div></pre></td></tr></table></figure>
+<p><br></p>
+<h4 id="新建文章"><a href="#新建文章" class="headerlink" title="新建文章"></a>新建文章</h4><p>安装完了之后，新建一篇名为test-img的文章</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo new [layout] test-img</div></pre></td></tr></table></figure>
+<div align="center"><br><br><img src="/2017/09/29/the-problem-when-use-post-asset-folder/2.png" alt=""><br><br></div>
+
+
+
+<p>  <br></p>
+<p>现在可以看到source/_posts里边，除了有test-img.md，还多一个文件夹 test-img</p>
+<div align="center"><br><br><img src="/2017/09/29/the-problem-when-use-post-asset-folder/3.png" alt=""></div>
+
+
+
+<p><br></p>
+<p>在里边我放一张名为me.jpg的图片, 插入图片的时候，输入  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">![](test-img/me.jpg)</div></pre></td></tr></table></figure>
+<p>如图所示：</p>
+<div align="center"><img src="/2017/09/29/the-problem-when-use-post-asset-folder/4.png" alt=""></div>
+
+
+
+<p><br></p>
+<h4 id="发现问题"><a href="#发现问题" class="headerlink" title="发现问题"></a>发现问题</h4><p>当我回到nodejs的时候，发现不对劲~</p>
+<div align="center"><img src="/2017/09/29/the-problem-when-use-post-asset-folder/5.png" alt=""></div>
+
+
+
+<p><br></p>
+<p>然后，我去页面看，图片不显示， chrome-devtools显示，找不到图片。</p>
+<div align="center"><img src="/2017/09/29/the-problem-when-use-post-asset-folder/6.png" alt=""></div>
+
+
+
+<p><br></p>
+<p>当我用hexo g生成文件的时候，发现报错， 如下：</p>
+<div align="center"><img src="/2017/09/29/the-problem-when-use-post-asset-folder/7.png" alt=""></div>
+
+<p>FATAL something’s wrong. May be you can find the solution here…..</p>
+<p>Error: ENOENT: no such file or directory, open ‘D:\nodejs6.5\hexo_blog\public\20<br>17-09-29-test-img.html\me.jpg’  </p>
+<p>仔细一看路径是</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">\public\2017-09-29-test-img.html\me.jpg</div></pre></td></tr></table></figure>
+<p><br></p>
+<p>在public文件夹里边也找不到2017-09-29-test-img.html文件夹。</p>
+<div align="center"><img src="/2017/09/29/the-problem-when-use-post-asset-folder/8.png" alt=""></div>
+
+
+
+<p><br></p>
+<p>百思不得期解，我了解别人的博客都是的链接都是       域名/年份/月份/文件名  的路径， 比如：<a href="http://www.54tianzhisheng.cn/2017/09/23/Guava-limit/" target="_blank" rel="external">http://www.54tianzhisheng.cn/2017/09/23/Guava-limit/</a></p>
+<div align="center"><img src="/2017/09/29/the-problem-when-use-post-asset-folder/9.png" alt=""></div>
+
+
+
+<p><br></p>
+<p>而且我的路径是 <a href="http://www.itomtan.com/2017-09-27-how-to-use-wechat-debug.html，">http://www.itomtan.com/2017-09-27-how-to-use-wechat-debug.html，</a> 所有的html都是放到</p>
+<div align="center"><img src="/2017/09/29/the-problem-when-use-post-asset-folder/10.png" alt=""></div>
+
+
+
+<p><br></p>
+<h4 id="找到原因"><a href="#找到原因" class="headerlink" title="找到原因"></a>找到原因</h4><p>为了满意的我好奇心~~，最终我找到了原因。原来，之前我把hexo根目下的_config.yml， 把permalink 设置为 year-:month-:day-:title.html，hexo就会在根目下生成html, 而导致 生成 相关的文件夹失效。</p>
+<div align="center"><img src="/2017/09/29/the-problem-when-use-post-asset-folder/11.png" alt=""></div>
+
+
+
+<p>是 permalink 和 post_asset_folder 这两个参数是相互影响的。</p>
+<p><br></p>
+<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p>把hexo根目下的_config.yml， 把permalink 设置为 :year/:month/:day/:title/</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">permalink: :year/:month/:day/:title/</div></pre></td></tr></table></figure>
+<p>好，重新hexo clean &amp;&amp; hexo g , 得到的就是我们要的那种方路径，而且图片显示正常了。</p>
+<div align="center"><img src="/2017/09/29/the-problem-when-use-post-asset-folder/12.png" alt=""></div>
+
+
+
+<p><br></p>
+<p>温馨提示一下：</p>
+<p>用Typora插入图片时  输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">![](文件名.png)</div></pre></td></tr></table></figure>
+<p>的时候，虽然在图片网页上能够正常显示，但是在Typora编辑时无法显示，那如何才能让Typora正常显示呢? 这里分享一个小技巧：</p>
+<p>在Typora中, 选择Edit &gt; Image Tools &gt;  Use Image Root Path， 然后选择你要的相关文件夹，选择之后，在md文件头上 会多一个 typora-root-url: xxxx, 好了，现在可以正常显示了。具体操作看下图。</p>
+<div align="center"><img src="/2017/09/29/the-problem-when-use-post-asset-folder/13.png" alt=""></div>
+
+<p><br></p>
+<div align="center"><img src="/2017/09/29/the-problem-when-use-post-asset-folder/14.png" alt=""></div>
+
+<p><br></p>
+<div align="center"><img src="/2017/09/29/the-problem-when-use-post-asset-folder/15.png" alt=""></div>
+
+<p><br></p>
+<p>最后，分享一下源代码：</p>
+<div class="github-widget" data-repo="ssttm169/hexo_blog"></div>]]></content>
+      
+        <categories>
+            
+            <category> 前端 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Hexo </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[H5,移动端调试神器 微信web开发者工具]]></title>
-      <url>/2017-09-27-how-to-use-wechat-debug.html</url>
+      <url>/2017/09/27/how-to-use-wechat-debug/</url>
       <content type="html"><![CDATA[<p> 微信整合了社交，支付，自媒体等强大的功能，现在许多H5的网页都是通过微信的浏览的，所以在开发过程，是避免不了出现问题，但是在手机上浏览，我们是无法知道是哪里出错了。对于这个问题， 可以使用微信web开发者工具解决。</p>
 <a id="more"></a>
 <p>名称为：wechat_web_devtools_0.7.0_x64.exe。</p>
-<p>打开工具之后, 打开微信，扫码登陆</p>
-<p><img src="/img/1792701/1.png" alt="扫码登陆"></p>
-<p>登录成功之后，点击移动调试，按照里边说明所示，</p>
-<p><img src="/img/1792701/2.png" alt="点击移动调试"></p>
-<p><img src="/img/1792701/3.png" alt="按照里边说明所示"></p>
-<p>手机设置成功之后，点击 开始调试</p>
-<p><img src="/img/1792701/4.png" alt="开始调试"></p>
+<h4 id="扫码登陆"><a href="#扫码登陆" class="headerlink" title="扫码登陆"></a>扫码登陆</h4><p>打开工具之后, 打开微信，扫码登陆</p>
+<p><img src="/2017/09/27/how-to-use-wechat-debug/1.png" alt="扫码登陆"></p>
+<h4 id="点击移动调试"><a href="#点击移动调试" class="headerlink" title="点击移动调试"></a>点击移动调试</h4><p>登录成功之后，点击移动调试，按照里边说明所示，</p>
+<p><img src="/2017/09/27/how-to-use-wechat-debug/2.png" alt="点击移动调试"></p>
+<h4 id="设置wifi的代理"><a href="#设置wifi的代理" class="headerlink" title="设置wifi的代理"></a>设置wifi的代理</h4><p><img src="/2017/09/27/how-to-use-wechat-debug/3.png" alt="按照里边说明所示"></p>
+<h4 id="开始调试"><a href="#开始调试" class="headerlink" title="开始调试"></a>开始调试</h4><p>手机设置成功之后，点击 开始调试</p>
+<p><img src="/2017/09/27/how-to-use-wechat-debug/4.png" alt="开始调试"></p>
 <p><strong>注意，如果系统提示你升级，千万不要升级，新版删除移动调试的功能：</strong></p>
 <p>如果你找不到安装文件，我这里提供一下</p>
 <div class="github-widget" data-repo="ssttm169/wechat_web_devtools_0.7.0_x64"></div>
@@ -34,7 +155,7 @@
     
     <entry>
       <title><![CDATA[做人做事准则]]></title>
-      <url>/2017-09-27-how-to-be-a-man.html</url>
+      <url>/2017/09/27/how-to-be-a-man/</url>
       <content type="html"><![CDATA[<p>1.不管发生什么事情，都不要乱发脾气，要冷静，想清楚之后，再做决定。<br>2.时间利用最大化，不浪费一分一秒。<br><a id="more"></a><br>3.不管多忙，都要保待良好的阅读习惯，因为这是快速成长的方式之一。<br>4.做事有计划，事后有总结，要对结果负责，否则无法按时完成任务，也不能改进做事的方式，没有收获等于浪费时间，浪费生命。<br>5.积极主动，把被动变成主动，杜绝消极的心态。 就算遇到挫折，也不要灰心，保持积极的心态，总结反思，重新再来。<br>6.有意志地缎练说话的能力，会说话能顶个千万雄师。<br>7.讲诚信，答应人家的事情，要按时按量完成。<br>8.每天都必须有一点点进步，有一点点收获，还记得越努力越幸运的公式吗~？<br>9.以学习的心态去工作，用新的方法解决问题，在工作中学习，在学习中工作。</p>
 ]]></content>
       
@@ -49,7 +170,7 @@
     
     <entry>
       <title><![CDATA[设置contentEditable="true"作为文本编辑器，定位光标解决办法]]></title>
-      <url>/2017-09-27-hello-world.html</url>
+      <url>/2017/09/27/hello-world/</url>
       <content type="html"><![CDATA[<p>html部分</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"ql-editor ql-blank"</span> <span class="attr">id</span>=<span class="string">"myEditor"</span> <span class="attr">style</span>=<span class="string">"padding:10px;width: 100%;height: 100%;overflow-y: scroll;"</span> <span class="attr">contentEditable</span>=<span class="string">"true"</span> <span class="attr">data-placeholder</span>=<span class="string">"这里输入内容!"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
 <a id="more"></a>
