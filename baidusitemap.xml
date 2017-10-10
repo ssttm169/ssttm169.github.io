@@ -5,7 +5,7 @@
     
   <url>
     <loc>http://www.itomtan.com/2017/10/09/what-I-learnt-in-september/</loc>
-    <lastmod>2017-10-09T07:17:11.226Z</lastmod>
+    <lastmod>2017-10-10T02:13:34.923Z</lastmod>
     <data>
         <display>
         <title>2017年9月的总结/收获/感悟</title>
@@ -29,9 +29,9 @@
         <title>H5,移动端调试神器 微信web开发者工具</title>
         <pubTime>2017-09-27T10:21:40.000Z</pubTime>
         
-        <tag>微信web开发者工具</tag>
-         
         <tag>前端</tag>
+         
+        <tag>微信web开发者工具</tag>
          
          
            
@@ -71,13 +71,13 @@
         <title>设置contentEditable="true"作为文本编辑器，定位光标解决办法</title>
         <pubTime>2017-09-27T07:50:25.000Z</pubTime>
         
-        <tag>前端</tag>
-         
         <tag>Vue</tag>
          
         <tag>编辑器</tag>
          
         <tag>Vux</tag>
+         
+        <tag>前端</tag>
          
          
            
