@@ -8,6 +8,7 @@
       <content type="html"><![CDATA[<p>在桌面上新建一个空的  启动MongoDB.bat , 输入以内命令:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">D:</div><div class="line">cd D:\mongodb\bin</div><div class="line">net stop MongoDB</div><div class="line">net start MongoDB</div><div class="line">cd D:\Program Files\robo3</div><div class="line">start robo3t.exe</div></pre></td></tr></table></figure>
 <a id="more"></a>
+<div class="github-widget" data-repo="ssttm169/launch_mongodb"></div>
 ]]></content>
       
         <categories>
