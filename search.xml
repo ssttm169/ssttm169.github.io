@@ -3,6 +3,29 @@
   
     
     <entry>
+      <title><![CDATA[如何快速启动mongodb服务]]></title>
+      <url>/2017/10/12/how-to-launch-mongodb-automatically/</url>
+      <content type="html"><![CDATA[<p>在桌面上新建一个空的  启动MongoDB.bat , 输入以内命令:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">D:</div><div class="line">cd D:\mongodb\bin</div><div class="line">net stop MongoDB</div><div class="line">net start MongoDB</div><div class="line">cd D:\Program Files\robo3</div><div class="line">start robo3t.exe</div></pre></td></tr></table></figure>
+<a id="more"></a>
+]]></content>
+      
+        <categories>
+            
+            <category> 数据库 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> mongodb </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[2017年9月的总结/收获/感悟]]></title>
       <url>/2017/10/09/what-I-learnt-in-september/</url>
       <content type="html"><![CDATA[<p>9月份的收获满满, 让我总结一下这一个月的感悟和收获。</p>

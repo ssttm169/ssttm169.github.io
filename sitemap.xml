@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.itomtan.com/2017/10/12/how-to-launch-mongodb-automatically/</loc>
+    
+    <lastmod>2017-10-12T10:55:01.561Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.itomtan.com/2017/09/27/hello-world/</loc>
+    
+    <lastmod>2017-10-12T07:53:14.155Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.itomtan.com/2017/10/09/what-I-learnt-in-september/</loc>
     
     <lastmod>2017-10-10T02:17:15.095Z</lastmod>
@@ -19,13 +33,6 @@
     <loc>http://www.itomtan.com/2017/09/29/the-problem-when-use-post-asset-folder/</loc>
     
     <lastmod>2017-09-30T02:46:41.793Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.itomtan.com/2017/09/27/hello-world/</loc>
-    
-    <lastmod>2017-09-28T07:52:31.206Z</lastmod>
     
   </url>
   

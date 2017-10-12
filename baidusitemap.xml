@@ -4,6 +4,52 @@
 
     
   <url>
+    <loc>http://www.itomtan.com/2017/10/12/how-to-launch-mongodb-automatically/</loc>
+    <lastmod>2017-10-12T10:55:01.561Z</lastmod>
+    <data>
+        <display>
+        <title>如何快速启动mongodb服务</title>
+        <pubTime>2017-10-12T10:41:03.000Z</pubTime>
+        
+        <tag>mongodb</tag>
+         
+         
+           
+             
+              <breadCrumb title="数据库" url="http://www.itomtan.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.itomtan.com/2017/09/27/hello-world/</loc>
+    <lastmod>2017-10-12T07:53:14.155Z</lastmod>
+    <data>
+        <display>
+        <title>设置contentEditable="true"作为文本编辑器，定位光标解决办法</title>
+        <pubTime>2017-09-27T07:50:25.000Z</pubTime>
+        
+        <tag>Vue</tag>
+         
+        <tag>编辑器</tag>
+         
+        <tag>Vux</tag>
+         
+        <tag>前端</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端" url="http://www.itomtan.com/categories/%E5%89%8D%E7%AB%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.itomtan.com/2017/10/09/what-I-learnt-in-september/</loc>
     <lastmod>2017-10-10T02:17:15.095Z</lastmod>
     <data>
@@ -52,32 +98,6 @@
         <pubTime>2017-09-29T07:21:02.000Z</pubTime>
         
         <tag>Hexo</tag>
-         
-         
-           
-             
-              <breadCrumb title="前端" url="http://www.itomtan.com/categories/%E5%89%8D%E7%AB%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.itomtan.com/2017/09/27/hello-world/</loc>
-    <lastmod>2017-09-28T07:52:31.206Z</lastmod>
-    <data>
-        <display>
-        <title>设置contentEditable="true"作为文本编辑器，定位光标解决办法</title>
-        <pubTime>2017-09-27T07:50:25.000Z</pubTime>
-        
-        <tag>Vue</tag>
-         
-        <tag>编辑器</tag>
-         
-        <tag>Vux</tag>
-         
-        <tag>前端</tag>
          
          
            

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.itomtan.com/"/>
-  <updated>2017-10-10T02:17:15.095Z</updated>
+  <updated>2017-10-12T10:55:01.561Z</updated>
   <id>http://www.itomtan.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>如何快速启动mongodb服务</title>
+    <link href="http://www.itomtan.com/2017/10/12/how-to-launch-mongodb-automatically/"/>
+    <id>http://www.itomtan.com/2017/10/12/how-to-launch-mongodb-automatically/</id>
+    <published>2017-10-12T10:41:03.000Z</published>
+    <updated>2017-10-12T10:55:01.561Z</updated>
+    
+    <content type="html"><![CDATA[<p>在桌面上新建一个空的  启动MongoDB.bat , 输入以内命令:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">D:</div><div class="line">cd D:\mongodb\bin</div><div class="line">net stop MongoDB</div><div class="line">net start MongoDB</div><div class="line">cd D:\Program Files\robo3</div><div class="line">start robo3t.exe</div></pre></td></tr></table></figure><a id="more"></a>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在桌面上新建一个空的  启动MongoDB.bat , 输入以内命令:&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;D:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;cd D:\mongodb\bin&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;net stop MongoDB&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;net start MongoDB&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;cd D:\Program Files\robo3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;start robo3t.exe&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+      <category term="数据库" scheme="http://www.itomtan.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    
+      <category term="mongodb" scheme="http://www.itomtan.com/tags/mongodb/"/>
+    
+  </entry>
   
   <entry>
     <title>2017年9月的总结/收获/感悟</title>
@@ -109,7 +132,7 @@
     <link href="http://www.itomtan.com/2017/09/27/hello-world/"/>
     <id>http://www.itomtan.com/2017/09/27/hello-world/</id>
     <published>2017-09-27T07:50:25.000Z</published>
-    <updated>2017-09-28T07:52:31.206Z</updated>
+    <updated>2017-10-12T07:53:14.155Z</updated>
     
     <content type="html"><![CDATA[<p>html部分</p><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"ql-editor ql-blank"</span> <span class="attr">id</span>=<span class="string">"myEditor"</span> <span class="attr">style</span>=<span class="string">"padding:10px;width: 100%;height: 100%;overflow-y: scroll;"</span> <span class="attr">contentEditable</span>=<span class="string">"true"</span> <span class="attr">data-placeholder</span>=<span class="string">"这里输入内容!"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure><a id="more"></a><p>设置焦点</p><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">setCaretPosition() &#123;</div><div class="line">    <span class="keyword">var</span> sel;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.savedRange != <span class="literal">null</span>) &#123;</div><div class="line"></div><div class="line">        sel = <span class="keyword">this</span>.win.getSelection();</div><div class="line">        <span class="keyword">if</span> (sel.rangeCount &gt; <span class="number">0</span>)</div><div class="line">            sel.removeAllRanges();</div><div class="line">        sel.addRange(<span class="keyword">this</span>.savedRange);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span> ( (sel = <span class="keyword">this</span>.doc.selection) &amp;&amp; sel.type != <span class="string">"Control"</span>)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">this</span>.win.getSelection().addRange(<span class="keyword">this</span>.savedRange);</div><div class="line">    &#125;</div><div class="line">&#125;,</div></pre></td></tr></table></figure><p>获取焦点</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">getCaretCharacterOffsetWithin() &#123;</div><div class="line">    <span class="keyword">var</span> caretOffset = <span class="number">0</span>;</div><div class="line">    <span class="keyword">var</span> sel;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="keyword">this</span>.win.getSelection != <span class="string">"undefined"</span>) &#123;</div><div class="line">        sel = <span class="keyword">this</span>.win.getSelection();</div><div class="line">        <span class="keyword">if</span> (sel.rangeCount &gt; <span class="number">0</span>) &#123;</div><div class="line">            <span class="keyword">var</span> range = <span class="keyword">this</span>.win.getSelection().getRangeAt(<span class="number">0</span>);</div><div class="line">            <span class="keyword">var</span> preCaretRange = range.cloneRange();</div><div class="line">            preCaretRange.selectNodeContents(<span class="keyword">this</span>.editor);</div><div class="line">            preCaretRange.setEnd(range.endContainer, range.endOffset);</div><div class="line">            caretOffset = preCaretRange.toString().length;</div><div class="line">            <span class="keyword">this</span>.savedRange = range</div><div class="line">        &#125;</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> ( (sel = <span class="keyword">this</span>.doc.selection) &amp;&amp; sel.type != <span class="string">"Control"</span>) &#123;</div><div class="line">        <span class="keyword">var</span> textRange = sel.createRange();</div><div class="line">        <span class="keyword">var</span> preCaretTextRange = <span class="keyword">this</span>.doc.body.createTextRange();</div><div class="line">        preCaretTextRange.moveToElementText(<span class="keyword">this</span>.editor);</div><div class="line">        preCaretTextRange.setEndPoint(<span class="string">"EndToEnd"</span>, textRange);</div><div class="line">        caretOffset = preCaretTextRange.text.length;</div><div class="line">        <span class="keyword">this</span>.savedRange = textRange</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">this</span>.caretOffset = caretOffset;</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>源代码使用Vue2 + Vux</p><p>为了方便测试，源代码调用了Vux的WechatEmotion组件，在编辑器中插件图片。</p><p>github源代码的网址如下：</p><div class="github-widget" data-repo="ssttm169/tom-editor"></div>]]></content>
     
