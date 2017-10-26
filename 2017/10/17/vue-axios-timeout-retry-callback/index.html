@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Tomtan" />
+
+
+
+<meta name="description" content="自从使用Vue2之后，就使用官方推荐的axios的插件来调用API，在使用过程中，如果服务器或者网络不稳定掉包了, 你们该如何处理呢? 下面我给你们分享一下我的经历。">
+<meta name="keywords" content="vue,axios">
+<meta property="og:type" content="article">
+<meta property="og:title" content="axios请求超时,设置重新请求的完美解决方法">
+<meta property="og:url" content="http://www.itomtan.com/2017/10/17/vue-axios-timeout-retry-callback/index.html">
+<meta property="og:site_name" content="Tomtan&#39;s Blog">
+<meta property="og:description" content="自从使用Vue2之后，就使用官方推荐的axios的插件来调用API，在使用过程中，如果服务器或者网络不稳定掉包了, 你们该如何处理呢? 下面我给你们分享一下我的经历。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.itomtan.com/2017/10/17/vue-axios-timeout-retry-callback/1.png">
+<meta property="og:image" content="http://www.itomtan.com/2017/10/17/vue-axios-timeout-retry-callback/2.png">
+<meta property="og:image" content="http://www.itomtan.com/2017/10/17/vue-axios-timeout-retry-callback/4.png">
+<meta property="og:image" content="http://www.itomtan.com/2017/10/17/vue-axios-timeout-retry-callback/3.png">
+<meta property="og:image" content="http://www.itomtan.com/2017/10/17/vue-axios-timeout-retry-callback/5.png">
+<meta property="og:updated_time" content="2017-10-26T01:36:47.896Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="axios请求超时,设置重新请求的完美解决方法">
+<meta name="twitter:description" content="自从使用Vue2之后，就使用官方推荐的axios的插件来调用API，在使用过程中，如果服务器或者网络不稳定掉包了, 你们该如何处理呢? 下面我给你们分享一下我的经历。">
+<meta name="twitter:image" content="http://www.itomtan.com/2017/10/17/vue-axios-timeout-retry-callback/1.png">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="Tomtan&#39;s Blog" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>axios请求超时,设置重新请求的完美解决方法 | Tomtan&#39;s Blog</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: false,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?2e16b056fa3e977fc6cac4f9a3098298";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Tomtan</a></h1>
+        </hgroup>
+
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>常用链接</li>
+                        
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives">归档</a></li>
+                        
+                            <li><a href="/tags">标签</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:royongbin@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/ssttm169" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vux/">Vux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/axios/">axios</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongodb/">mongodb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微信web开发者工具/">微信web开发者工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编辑器/">编辑器</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://www.gitnavi.com/">程序员工具导航</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://techblog.pub/">原创技术博客大联盟</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://www.liaoxuefeng.com/">廖雪峰</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://www.ruanyifeng.com">阮一峰</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://www.cnblogs.com/rubylouvre/">司徒正美</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://coolshell.cn/">酷壳</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://www.phodal.com/">phodal</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://www.yangzhiping.com/">阳志平</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://ganchengyuan1990.github.io/blog/">时间追逐者</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://surmon.me/">surmon.me</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://mp.weixin.qq.com/debug/wxadoc/dev/">小程序</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://juejin.im">掘金</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://cuiqingcai.com/">崔庆才</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://www.54tianzhisheng.cn/">Zhisheng</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://orangexc.xyz/">OrangeBlog</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">moxfive</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://blog.iwangyu.cn/">WangYu</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://www.1ymlh.com">印度大使</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Tomtan</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Tomtan</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives">归档</a></li>
+                
+                    <li><a href="/tags">标签</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:royongbin@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/ssttm169" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="常用链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="[layout]-vue-axios-timeout-retry-callback" class="article article-type-[layout]" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/10/17/vue-axios-timeout-retry-callback/" class="article-date">
+      <time datetime="2017-10-17T12:11:00.000Z" itemprop="datePublished">2017-10-17</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      axios请求超时,设置重新请求的完美解决方法
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/前端/">前端</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/axios/">axios</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/">vue</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>自从使用Vue2之后，就使用官方推荐的axios的插件来调用API，在使用过程中，如果服务器或者网络不稳定掉包了, 你们该如何处理呢? 下面我给你们分享一下我的经历。</p>
+<a id="more"></a>
+<p><br></p>
+<h4 id="具体原因"><a href="#具体原因" class="headerlink" title="具体原因"></a>具体原因</h4><p>最近公司在做一个项目, 服务端数据接口用的是Php输出的API, 有时候在调用的过程中会失败, 在谷歌浏览器里边显示Provisional headers are shown。</p>
+<p><img src="/2017/10/17/vue-axios-timeout-retry-callback/1.png" alt=""></p>
+<p>按照搜索引擎给出来的解决方案，解决不了我的问题.   </p>
+<p><br></p>
+<p>最近在研究AOP这个开发编程的概念，axios开发说明里边提到的栏截器(axios.Interceptors)应该是这种机制，降低代码耦合度，提高程序的可重用性，同时提高了开发的效率。</p>
+<p><br></p>
+<h4 id="带坑的解决方案一"><a href="#带坑的解决方案一" class="headerlink" title="带坑的解决方案一"></a>带坑的解决方案一</h4><p>我的经验有限，觉得唯一能做的，就是axios请求超时之后做一个重新请求。通过研究 axios的使用说明，给它设置一个timeout = 6000</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">axios.defaults.timeout =  <span class="number">6000</span>;</div></pre></td></tr></table></figure>
+<p>然后加一个栏截器.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Add a request interceptor</span></div><div class="line">axios.interceptors.request.use(<span class="function"><span class="keyword">function</span> (<span class="params">config</span>) </span>&#123;</div><div class="line">    <span class="comment">// Do something before request is sent</span></div><div class="line">    <span class="keyword">return</span> config;</div><div class="line">  &#125;, <span class="function"><span class="keyword">function</span> (<span class="params">error</span>) </span>&#123;</div><div class="line">    <span class="comment">// Do something with request error</span></div><div class="line">    <span class="keyword">return</span> <span class="built_in">Promise</span>.reject(error);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// Add a response interceptor</span></div><div class="line">axios.interceptors.response.use(<span class="function"><span class="keyword">function</span> (<span class="params">response</span>) </span>&#123;</div><div class="line">    <span class="comment">// Do something with response data</span></div><div class="line">    <span class="keyword">return</span> response;</div><div class="line">  &#125;, <span class="function"><span class="keyword">function</span> (<span class="params">error</span>) </span>&#123;</div><div class="line">    <span class="comment">// Do something with response error</span></div><div class="line">    <span class="keyword">return</span> <span class="built_in">Promise</span>.reject(error);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>这个栏截器作用是 如果在请求超时之后，栏截器可以捕抓到信息，然后再进行下一步操作，也就是我想要用 重新请求。</p>
+<p><b></b></p>
+<p>这里是相关的页面数据请求。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">this</span>.$axios.get(url, &#123;<span class="attr">params</span>:&#123;<span class="attr">load</span>:<span class="string">'noload'</span>&#125;&#125;).then(<span class="function"><span class="keyword">function</span> (<span class="params">response</span>) </span>&#123;</div><div class="line">	<span class="comment">//dosomething();</span></div><div class="line">&#125;).catch(<span class="function"><span class="params">error</span> =&gt;</span> &#123;</div><div class="line">	<span class="comment">//超时之后在这里捕抓错误信息.</span></div><div class="line">	<span class="keyword">if</span> (error.response) &#123;</div><div class="line">		<span class="built_in">console</span>.log(<span class="string">'error.response'</span>)</div><div class="line">		<span class="built_in">console</span>.log(error.response);</div><div class="line">	&#125; <span class="keyword">else</span> <span class="keyword">if</span> (error.request) &#123;</div><div class="line">		<span class="built_in">console</span>.log(error.request)</div><div class="line">		<span class="built_in">console</span>.log(<span class="string">'error.request'</span>)</div><div class="line">		<span class="keyword">if</span>(error.request.readyState == <span class="number">4</span> &amp;&amp; error.request.status == <span class="number">0</span>)&#123;</div><div class="line">			<span class="comment">//我在这里重新请求</span></div><div class="line">		&#125;</div><div class="line">	&#125; <span class="keyword">else</span> &#123;</div><div class="line">		<span class="built_in">console</span>.log(<span class="string">'Error'</span>, error.message);</div><div class="line">	&#125;</div><div class="line">	<span class="built_in">console</span>.log(error.config);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p><br></p>
+<p>超时之后, 报出 Uncaught (in promise) Error: timeout of  xxx ms exceeded的错误。</p>
+<p><img src="/2017/10/17/vue-axios-timeout-retry-callback/2.png" alt=""></p>
+<p>在 catch那里，它返回的是error.request错误，所以就在这里做 retry的功能,  经过测试是可以实现重新请求的功功能， 虽然能够实现 超时重新请求的功能，但很麻烦，需要每一个请API的页面里边要设置重新请求。</p>
+<p><img src="/2017/10/17/vue-axios-timeout-retry-callback/4.png" alt=""></p>
+<p>看上面，我这个项目有几十个.vue 文件，如果每个页面都要去设置超时重新请求的功能，那我要疯掉的. </p>
+<p><br></p>
+<p>而且这个机制还有一个严重的bug，就是被请求的链接失效或其他原因造成无法正常访问的时候，这个机制失效了，它不会等待我设定的6秒，而且一直在刷，一秒种请求几十次，很容易就把服务器搞垮了，请看下图, 一眨眼的功能，它就请求了146次。</p>
+<p><img src="/2017/10/17/vue-axios-timeout-retry-callback/3.png" alt=""></p>
+<p><br></p>
+<h4 id="带坑的解决方案二"><a href="#带坑的解决方案二" class="headerlink" title="带坑的解决方案二"></a>带坑的解决方案二</h4><p>研究了axios的源代码，超时后,  会在拦截器那里 axios.interceptors.response 捕抓到错误信息,  且 error.code = “ECONNABORTED”，具体链接</p>
+<p> <a href="https://github.com/axios/axios/blob/26b06391f831ef98606ec0ed406d2be1742e9850/lib/adapters/xhr.js#L95-L101" target="_blank" rel="external">https://github.com/axios/axios/blob/26b06391f831ef98606ec0ed406d2be1742e9850/lib/adapters/xhr.js#L95-L101</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Handle timeout</span></div><div class="line">request.ontimeout = <span class="function"><span class="keyword">function</span> <span class="title">handleTimeout</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  reject(createError(<span class="string">'timeout of '</span> + config.timeout + <span class="string">'ms exceeded'</span>, config, <span class="string">'ECONNABORTED'</span>,</div><div class="line">    request));</div><div class="line"></div><div class="line">  <span class="comment">// Clean up request</span></div><div class="line">  request = <span class="literal">null</span>;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>所以，我的全局超时重新获取的解决方案这样的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">axios.interceptors.response.use(<span class="function"><span class="keyword">function</span>(<span class="params">response</span>)</span>&#123;</div><div class="line">....</div><div class="line">&#125;, <span class="function"><span class="keyword">function</span>(<span class="params">error</span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> originalRequest = error.config;</div><div class="line">	<span class="keyword">if</span>(error.code == <span class="string">'ECONNABORTED'</span> &amp;&amp; error.message.indexOf(<span class="string">'timeout'</span>)!=<span class="number">-1</span> &amp;&amp; !originalRequest._retry)&#123;</div><div class="line">			originalRequest._retry = <span class="literal">true</span></div><div class="line">			<span class="keyword">return</span> axios.request(originalRequest);</div><div class="line">	&#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>这个方法，也可以实现得新请求，但有两个问题，1是它只重新请求1次，如果再超时的话，它就停止了，不会再请求。第2个问题是，我在每个有数据请求的页面那里，做了许多操作，比如 this.$axios.get(url).then之后操作。</p>
+<p><br></p>
+<h4 id="完成的解决方法"><a href="#完成的解决方法" class="headerlink" title="完成的解决方法"></a>完成的解决方法</h4><p>以AOP编程方式，我需要的是一个 超时重新请求的全局功能， 要在axios.Interceptors下功夫，在github的axios的issue找了别人的一些解决方法，终于找到了一个完成解决方案，就是下面这个。</p>
+<p><a href="https://github.com/axios/axios/issues/164#issuecomment-327837467" target="_blank" rel="external">https://github.com/axios/axios/issues/164#issuecomment-327837467</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//在main.js设置全局的请求次数，请求的间隙</span></div><div class="line">axios.defaults.retry = <span class="number">4</span>;</div><div class="line">axios.defaults.retryDelay = <span class="number">1000</span>;</div><div class="line"></div><div class="line">axios.interceptors.response.use(<span class="literal">undefined</span>, <span class="function"><span class="keyword">function</span> <span class="title">axiosRetryInterceptor</span>(<span class="params">err</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> config = err.config;</div><div class="line">    <span class="comment">// If config does not exist or the retry option is not set, reject</span></div><div class="line">    <span class="keyword">if</span>(!config || !config.retry) <span class="keyword">return</span> <span class="built_in">Promise</span>.reject(err);</div><div class="line">    </div><div class="line">    <span class="comment">// Set the variable for keeping track of the retry count</span></div><div class="line">    config.__retryCount = config.__retryCount || <span class="number">0</span>;</div><div class="line">    </div><div class="line">    <span class="comment">// Check if we've maxed out the total number of retries</span></div><div class="line">    <span class="keyword">if</span>(config.__retryCount &gt;= config.retry) &#123;</div><div class="line">        <span class="comment">// Reject with the error</span></div><div class="line">        <span class="keyword">return</span> <span class="built_in">Promise</span>.reject(err);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">// Increase the retry count</span></div><div class="line">    config.__retryCount += <span class="number">1</span>;</div><div class="line">    </div><div class="line">    <span class="comment">// Create new promise to handle exponential backoff</span></div><div class="line">    <span class="keyword">var</span> backoff = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve</span>) </span>&#123;</div><div class="line">        setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">            resolve();</div><div class="line">        &#125;, config.retryDelay || <span class="number">1</span>);</div><div class="line">    &#125;);</div><div class="line">    </div><div class="line">    <span class="comment">// Return the promise in which recalls axios to retry the request</span></div><div class="line">    <span class="keyword">return</span> backoff.then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> axios(config);</div><div class="line">    &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>其他的那个几十个.vue页面的 this.$axios的get 和post 的方法根本就不需要去修改它们的代码。</p>
+<p>在这个过程中，谢谢jooger给予大量的技术支持，这是他的个人信息 <a href="https://github.com/jo0ger" target="_blank" rel="external">https://github.com/jo0ger</a> ， 谢谢。</p>
+<p><br></p>
+<p>以下是我做的一个试验。。把axios.defaults.retryDelay = 500, 请求 www.facebook.com</p>
+<p><img src="/2017/10/17/vue-axios-timeout-retry-callback/5.png" alt=""></p>
+<p>按照惯例，给出源代码，如有更好的建议，请告诉我，谢谢。</p>
+<div class="github-widget" data-repo="ssttm169/use-axios-well"></div>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2017/10/17/vue-axios-timeout-retry-callback/">axios请求超时,设置重新请求的完美解决方法</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Tomtan</a></p>
+        <p><span>发布时间:</span>2017-10-17, 20:11:00</p>
+        <p><span>最后更新:</span>2017-10-26, 09:36:47</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/10/17/vue-axios-timeout-retry-callback/" title="axios请求超时,设置重新请求的完美解决方法">http://www.itomtan.com/2017/10/17/vue-axios-timeout-retry-callback/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://www.itomtan.com/2017/10/17/vue-axios-timeout-retry-callback/　　作者: Tomtan" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2017/10/12/how-to-launch-mongodb-automatically/">
+                    如何快速启动mongodb服务
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#具体原因"><span class="toc-number">1.</span> <span class="toc-text">具体原因</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#带坑的解决方案一"><span class="toc-number">2.</span> <span class="toc-text">带坑的解决方案一</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#带坑的解决方案二"><span class="toc-number">3.</span> <span class="toc-text">带坑的解决方案二</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#完成的解决方法"><span class="toc-number">4.</span> <span class="toc-text">完成的解决方法</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2017/10/12/how-to-launch-mongodb-automatically/" title="下一篇: 如何快速启动mongodb服务">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/10/17/vue-axios-timeout-retry-callback/">axios请求超时,设置重新请求的完美解决方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/12/how-to-launch-mongodb-automatically/">如何快速启动mongodb服务</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/09/what-I-learnt-in-september/">2017年9月的总结/收获/感悟</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/29/the-problem-when-use-post-asset-folder/">Hexo开启post_asset_folder后, 安装hexo-asset-image,不起作用的问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/27/how-to-use-wechat-debug/">H5,移动端调试神器 微信web开发者工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/27/how-to-be-a-man/">做人做事准则</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/27/hello-world/">设置contentEditable="true"作为文本编辑器，定位光标解决办法</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2017 Tomtan
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+    <script src="/js/GithubRepoWidget.js"></script>
+
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+             github: ".github-widget a", 
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

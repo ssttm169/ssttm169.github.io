@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.itomtan.com/2017/10/17/vue-axios-timeout-retry-callback/</loc>
+    
+    <lastmod>2017-10-26T01:36:47.896Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.itomtan.com/2017/09/29/the-problem-when-use-post-asset-folder/</loc>
+    
+    <lastmod>2017-10-17T11:39:37.185Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.itomtan.com/2017/10/12/how-to-launch-mongodb-automatically/</loc>
     
     <lastmod>2017-10-16T03:03:20.178Z</lastmod>
@@ -26,13 +40,6 @@
     <loc>http://www.itomtan.com/2017/09/27/how-to-use-wechat-debug/</loc>
     
     <lastmod>2017-10-09T06:30:57.687Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.itomtan.com/2017/09/29/the-problem-when-use-post-asset-folder/</loc>
-    
-    <lastmod>2017-09-30T02:46:41.793Z</lastmod>
     
   </url>
   
