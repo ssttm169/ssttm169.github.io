@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.itomtan.com/2017/11/02/what-I-learnt-in-october/</loc>
+    
+    <lastmod>2017-11-02T06:44:40.461Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.itomtan.com/2017/10/27/wechat-sharing-functions-dont-work-properly/</loc>
+    
+    <lastmod>2017-10-27T01:09:47.590Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.itomtan.com/2017/10/17/vue-axios-timeout-retry-callback/</loc>
     
     <lastmod>2017-10-26T01:36:47.896Z</lastmod>

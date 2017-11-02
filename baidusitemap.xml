@@ -4,6 +4,46 @@
 
     
   <url>
+    <loc>http://www.itomtan.com/2017/11/02/what-I-learnt-in-october/</loc>
+    <lastmod>2017-11-02T06:44:40.461Z</lastmod>
+    <data>
+        <display>
+        <title>2017年10月的总结/收获/感悟</title>
+        <pubTime>2017-11-02T06:36:43.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="个人成长" url="http://www.itomtan.com/categories/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.itomtan.com/2017/10/27/wechat-sharing-functions-dont-work-properly/</loc>
+    <lastmod>2017-10-27T01:09:47.590Z</lastmod>
+    <data>
+        <display>
+        <title>Vue框架在苹果手机上无法正常使用微信分享接口的解决方案</title>
+        <pubTime>2017-10-27T00:49:55.000Z</pubTime>
+        
+        <tag>vue</tag>
+         
+        <tag>wechat</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端" url="http://www.itomtan.com/categories/%E5%89%8D%E7%AB%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.itomtan.com/2017/10/17/vue-axios-timeout-retry-callback/</loc>
     <lastmod>2017-10-26T01:36:47.896Z</lastmod>
     <data>
