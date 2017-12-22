@@ -229,9 +229,9 @@
       <category term="工具使用" scheme="http://www.itomtan.com/categories/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/"/>
     
     
-      <category term="微信web开发者工具" scheme="http://www.itomtan.com/tags/%E5%BE%AE%E4%BF%A1web%E5%BC%80%E5%8F%91%E8%80%85%E5%B7%A5%E5%85%B7/"/>
-    
       <category term="前端" scheme="http://www.itomtan.com/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="微信web开发者工具" scheme="http://www.itomtan.com/tags/%E5%BE%AE%E4%BF%A1web%E5%BC%80%E5%8F%91%E8%80%85%E5%B7%A5%E5%85%B7/"/>
     
   </entry>
   
@@ -274,13 +274,13 @@
       <category term="前端" scheme="http://www.itomtan.com/categories/%E5%89%8D%E7%AB%AF/"/>
     
     
-      <category term="前端" scheme="http://www.itomtan.com/tags/%E5%89%8D%E7%AB%AF/"/>
-    
       <category term="Vue" scheme="http://www.itomtan.com/tags/Vue/"/>
     
       <category term="编辑器" scheme="http://www.itomtan.com/tags/%E7%BC%96%E8%BE%91%E5%99%A8/"/>
     
       <category term="Vux" scheme="http://www.itomtan.com/tags/Vux/"/>
+    
+      <category term="前端" scheme="http://www.itomtan.com/tags/%E5%89%8D%E7%AB%AF/"/>
     
   </entry>
   
