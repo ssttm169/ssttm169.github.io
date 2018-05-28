@@ -3,6 +3,48 @@
   
     
     <entry>
+      <title><![CDATA[专冶各种H5的嵌入垃圾广告!]]></title>
+      <url>/2018/05/28/how-to-block-popup-ads-in-browser/</url>
+      <content type="html"><![CDATA[<p>公司的H5页面挨嵌入各种各样的广告，有时有，有时没有，这个很烦人，问过许多大咖，有几种说法和几种解决方法</p>
+<a id="more"></a>
+<p><strong>1.DNS劫持 。</strong></p>
+<p>HTML5页面被电信运营商进行DNS劫持植入广告，建议打电话给电信运营商。这招我试过，不管用，他们都在踢皮球，到底是运营商或代理商干的，，还是内部人干，很难追求到源头。</p>
+<p><strong>2.HTTP劫持 。</strong> </p>
+<p>可能也有这个原因，建议使用HTTPS， HTTPS成本不算高， 一年几百块至几千块的，能有效拦截嵌入广告。 但不彻底， 照样有嵌入广告的情况，具体原因不详。</p>
+<p><strong>3.第三方包植入广告。</strong></p>
+<p>不排除第三方的包有植入广告的代码，但这个不好找，一个项目的npm包，可能1000多个~~..</p>
+<p>难道没有更好的办法了吗? 有~~这个是别人那里扒过来的</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 反运营商劫持 S --&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="undefined">    html &#123;</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="undefined">        display:none;</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="undefined">    &#125;</span></div><div class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="javascript">    <span class="keyword">if</span>( self == top ) &#123;</span></div><div class="line"><span class="javascript">        <span class="built_in">document</span>.documentElement.style.display = <span class="string">'block'</span> ;</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="javascript">    &#125; <span class="keyword">else</span> &#123;</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="undefined">        top.location = self.location ;</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="undefined">    &#125;</span></div><div class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- 反运营商劫持 E --&gt;</span></div></pre></td></tr></table></figure>
+<p>但实际运用的过程，不起作用，可能是奸商改了规则~~。</p>
+<p>经过反复研究，那些嵌入的代码，的确规则时常变化的，~~但有一样东西是不变的，就是iframe，每段嵌入代码都会iframe</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">...</div><div class="line"><span class="comment">&lt;!-- 嵌入的广告代码 开始  --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"xxx_id"</span>&gt;</span></div><div class="line">...</div><div class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">id</span>=<span class="string">"xxx"</span> <span class="attr">src</span>=<span class="string">"xx.com"</span><span class="attr">...</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- 嵌入的广告代码 结束  --&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>所以我的代码是这样写的。</p>
+<p>css代码</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* 抢先 隐藏 iframe */</span></div><div class="line"><span class="selector-tag">body</span> <span class="selector-tag">iframe</span> &#123;<span class="attribute">display</span>: none;&#125;</div></pre></td></tr></table></figure>
+<p>js代码</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> del_times = <span class="number">0</span>, deTimer = <span class="literal">null</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">adGo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> iframe = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'iframe'</span>)[<span class="number">0</span>];</div><div class="line">	<span class="keyword">if</span>(iframe)&#123;</div><div class="line">		<span class="built_in">console</span>.log(iframe)</div><div class="line">		<span class="keyword">var</span> bodyNode = &#123;<span class="attr">tagName</span>:<span class="string">''</span>&#125;, iframeParent, targetNode = iframe.parentNode;</div><div class="line">		<span class="keyword">while</span> (bodyNode.tagName != <span class="string">'BODY'</span>)&#123;</div><div class="line">			bodyNode = targetNode;</div><div class="line">			<span class="keyword">if</span>(bodyNode.tagName != <span class="string">'BODY'</span>)&#123;</div><div class="line">				iframeParent = targetNode;</div><div class="line">				targetNode = targetNode.parentNode;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span>(iframeParent) <span class="comment">//如果iframe有父类</span></div><div class="line">			bodyNode.removeChild(iframeParent);</div><div class="line">		<span class="keyword">else</span></div><div class="line">			bodyNode.removeChild(iframe);</div><div class="line">	&#125;</div><div class="line">	del_times++;</div><div class="line">	<span class="keyword">if</span> (del_times &gt; <span class="number">10</span>) <span class="built_in">window</span>.clearInterval(deTimer)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//抢先 删除 嵌入广告</span></div><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;adGo();&#125;())</div><div class="line"></div><div class="line">deTimer = self.setInterval(adGo, <span class="number">200</span>);</div></pre></td></tr></table></figure>
+<p>把代码加到<code>&lt;body&gt;&lt;/body&gt;</code></p>
+<p>经过一星期运行，效果棒棒的，妈妈再也不要担心我H5的弹出广告了。<br>github源代码在这里</p>
+<div class="github-widget" data-repo="ssttm169/remove-h5-ads"></div>]]></content>
+      
+        <categories>
+            
+            <category> 前端 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> vue </tag>
+            
+            <tag> html </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[2017年总结]]></title>
       <url>/2018/01/12/what-I-learnt-in-2017/</url>
       <content type="html"><![CDATA[<p>光阴似箭， 感觉2017年一眨眼就过去了，回家过年又挨家人逼婚了! 曾经鼓鼓的钱包又要变扁了! 同学聚会又是一场攀比聚会!…年复一年， 日复一日，是否感觉就像一次次例行公事，每次都在重复昨天的故事，枯燥乏味。是的，我曾经也有过这样的感觉，不过2017年让我找到了根源，找到了答案。归根结底， 是否有意识地记录自己的成长历程，并及时总结和调整自己对待人生的态度。当每次去回顾自己的成长历程时，就会发现原来自己人生的每一刻都是这么有意义的， 下面分享一下我的具体收获和感悟。~</p>
