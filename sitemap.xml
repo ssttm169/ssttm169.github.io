@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.itomtan.com/about/index.html</loc>
+    
+    <lastmod>2018-06-01T05:02:24.695Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.itomtan.com/2017/10/17/vue-axios-timeout-retry-callback/</loc>
+    
+    <lastmod>2018-06-01T04:49:05.480Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.itomtan.com/2018/05/28/how-to-block-popup-ads-in-browser/</loc>
     
     <lastmod>2018-05-28T06:20:51.063Z</lastmod>
@@ -51,13 +65,6 @@
   </url>
   
   <url>
-    <loc>http://www.itomtan.com/2017/10/17/vue-axios-timeout-retry-callback/</loc>
-    
-    <lastmod>2017-10-26T01:36:47.897Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.itomtan.com/2017/09/29/the-problem-when-use-post-asset-folder/</loc>
     
     <lastmod>2017-10-17T11:39:37.185Z</lastmod>
@@ -103,13 +110,6 @@
     <loc>http://www.itomtan.com/tags/index.html</loc>
     
     <lastmod>2017-09-28T06:35:44.287Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.itomtan.com/about/index.html</loc>
-    
-    <lastmod>2017-09-27T08:39:57.121Z</lastmod>
     
   </url>
   

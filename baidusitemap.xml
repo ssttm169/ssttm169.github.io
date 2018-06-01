@@ -3,6 +3,29 @@
 
 
     
+    
+  <url>
+    <loc>http://www.itomtan.com/2017/10/17/vue-axios-timeout-retry-callback/</loc>
+    <lastmod>2018-06-01T04:49:05.480Z</lastmod>
+    <data>
+        <display>
+        <title>axios请求超时,设置重新请求的完美解决方法</title>
+        <pubTime>2017-10-17T12:11:00.000Z</pubTime>
+        
+        <tag>vue</tag>
+         
+        <tag>axios</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端" url="http://www.itomtan.com/categories/%E5%89%8D%E7%AB%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
   <url>
     <loc>http://www.itomtan.com/2018/05/28/how-to-block-popup-ads-in-browser/</loc>
     <lastmod>2018-05-28T06:20:51.063Z</lastmod>
@@ -138,28 +161,6 @@
 
     
   <url>
-    <loc>http://www.itomtan.com/2017/10/17/vue-axios-timeout-retry-callback/</loc>
-    <lastmod>2017-10-26T01:36:47.897Z</lastmod>
-    <data>
-        <display>
-        <title>axios请求超时,设置重新请求的完美解决方法</title>
-        <pubTime>2017-10-17T12:11:00.000Z</pubTime>
-        
-        <tag>vue</tag>
-         
-        <tag>axios</tag>
-         
-         
-           
-             
-              <breadCrumb title="前端" url="http://www.itomtan.com/categories/%E5%89%8D%E7%AB%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.itomtan.com/2017/09/29/the-problem-when-use-post-asset-folder/</loc>
     <lastmod>2017-10-17T11:39:37.185Z</lastmod>
     <data>
@@ -282,6 +283,5 @@
     </data>
     </url>
 
-    
     
 </urlset>
