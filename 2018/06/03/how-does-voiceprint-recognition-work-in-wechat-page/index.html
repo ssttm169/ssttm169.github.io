@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Tomtan" />
+
+
+
+<meta name="description" content="最近做一个微信的口令红包的功能，准备都要投入使用了， 老板突然发愁，他说 现在的羊毛党这么猖狂，一不小心，10万的推广红包，会不会两天就挨刷完了? ….那我们能否做一个功能校验一下是否同一个人来领取红包，不就得了吗? 他一拍脑袋，接着说，Tom 你给我们做一个声纹识别吧!">
+<meta name="keywords" content="微信,vue,koa">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Web端声纹识别">
+<meta property="og:url" content="http://www.itomtan.com/2018/06/03/how-does-voiceprint-recognition-work-in-wechat-page/index.html">
+<meta property="og:site_name" content="Tomtan&#39;s Blog">
+<meta property="og:description" content="最近做一个微信的口令红包的功能，准备都要投入使用了， 老板突然发愁，他说 现在的羊毛党这么猖狂，一不小心，10万的推广红包，会不会两天就挨刷完了? ….那我们能否做一个功能校验一下是否同一个人来领取红包，不就得了吗? 他一拍脑袋，接着说，Tom 你给我们做一个声纹识别吧!">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.itomtan.com/2018/06/03/how-does-voiceprint-recognition-work-in-wechat-page/flow.png">
+<meta property="og:image" content="http://www.itomtan.com/2018/06/03/how-does-voiceprint-recognition-work-in-wechat-page/reg-vpr.gif">
+<meta property="og:image" content="http://www.itomtan.com/2018/06/03/how-does-voiceprint-recognition-work-in-wechat-page/login-vpr.gif">
+<meta property="og:image" content="http://www.itomtan.com/2018/06/03/how-does-voiceprint-recognition-work-in-wechat-page/upload-result.png">
+<meta property="og:updated_time" content="2018-06-03T02:59:25.795Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Web端声纹识别">
+<meta name="twitter:description" content="最近做一个微信的口令红包的功能，准备都要投入使用了， 老板突然发愁，他说 现在的羊毛党这么猖狂，一不小心，10万的推广红包，会不会两天就挨刷完了? ….那我们能否做一个功能校验一下是否同一个人来领取红包，不就得了吗? 他一拍脑袋，接着说，Tom 你给我们做一个声纹识别吧!">
+<meta name="twitter:image" content="http://www.itomtan.com/2018/06/03/how-does-voiceprint-recognition-work-in-wechat-page/flow.png">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="Tomtan&#39;s Blog" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>Web端声纹识别 | Tomtan&#39;s Blog</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: false,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?2e16b056fa3e977fc6cac4f9a3098298";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Tomtan</a></h1>
+        </hgroup>
+
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>常用链接</li>
+                        
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives">归档</a></li>
+                        
+                            <li><a href="/tags">标签</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:royongbin@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/ssttm169" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vux/">Vux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/axios/">axios</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/koa/">koa</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongodb/">mongodb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wechat/">wechat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微信/">微信</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微信web开发者工具/">微信web开发者工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编辑器/">编辑器</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://jeffjade.com/">晚晴幽草轩</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://www.gitnavi.com/">程序员工具导航</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://techblog.pub/">原创技术博客大联盟</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://www.liaoxuefeng.com/">廖雪峰</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://www.ruanyifeng.com">阮一峰</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://www.cnblogs.com/rubylouvre/">司徒正美</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://coolshell.cn/">酷壳</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://www.phodal.com/">phodal</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://www.yangzhiping.com/">阳志平</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://ganchengyuan1990.github.io/blog/">时间追逐者</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://surmon.me/">surmon.me</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://mp.weixin.qq.com/debug/wxadoc/dev/">小程序</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://juejin.im">掘金</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://cuiqingcai.com/">崔庆才</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://www.54tianzhisheng.cn/">Zhisheng</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://orangexc.xyz/">OrangeBlog</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">moxfive</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://blog.iwangyu.cn/">WangYu</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://www.1ymlh.com">印度大使</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Tomtan</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Tomtan</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives">归档</a></li>
+                
+                    <li><a href="/tags">标签</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:royongbin@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/ssttm169" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="常用链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="[layout]-how-does-voiceprint-recognition-work-in-wechat-page" class="article article-type-[layout]" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/06/03/how-does-voiceprint-recognition-work-in-wechat-page/" class="article-date">
+      <time datetime="2018-06-03T02:51:29.000Z" itemprop="datePublished">2018-06-03</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Web端声纹识别
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/前端/">前端</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/koa/">koa</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/">vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信/">微信</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>最近做一个微信的口令红包的功能，准备都要投入使用了， 老板突然发愁，他说 现在的羊毛党这么猖狂，一不小心，10万的推广红包，会不会两天就挨刷完了? ….那我们能否做一个功能校验一下是否同一个人来领取红包，不就得了吗? 他一拍脑袋，接着说，Tom 你给我们做一个声纹识别吧!</p>
+<a id="more"></a>
+<p><br><br>说干就干，在寻找 声纹识别服务商，发现什么科大讯飞，还什么BAT等许多大厂都没有支持Web端的，后来找到一个不知名的小厂。。<br><br></p>
+<p>具体的流程如下：<br><img src="/2018/06/03/how-does-voiceprint-recognition-work-in-wechat-page/flow.png" alt="具体流程"></p>
+<p><br></p>
+<p>声纹注册用户(最终效果图)<br><img src="/2018/06/03/how-does-voiceprint-recognition-work-in-wechat-page/reg-vpr.gif" alt="注册效果图"></p>
+<p><br></p>
+<p>声纹登录(最终效果图)</p>
+<p><img src="/2018/06/03/how-does-voiceprint-recognition-work-in-wechat-page/login-vpr.gif" alt="登陆效果图"></p>
+<p><br></p>
+<p>上传文件识别：<br><img src="/2018/06/03/how-does-voiceprint-recognition-work-in-wechat-page/upload-result.png" alt="上传文件识别"></p>
+<p><br></p>
+<h3 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h3><p>因为声纹识别服务商 不能直接使用客户端直接调用 和 音频不支持的问题，要开发自己的服务端来对接。</p>
+<p>技术栈 koa + co-wecaht-api + mysql + ffmpeg + pm2 + knex</p>
+<p>注：因服务商不支持微信amr文件， 要用ffmpeg 把微信的音频amr文件转码成wav。</p>
+<p>以下是一些相关的代码，，开撸。。</p>
+<p>微信jssdk开发 如果你微信API这一块已经很熟悉了，跳到下一节<br><br><br></p>
+<p>获取微信token<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> api = <span class="keyword">await</span> <span class="keyword">new</span> WechatAPI(</div><div class="line">	config.appid,</div><div class="line">	config.appsecret,</div><div class="line">	<span class="keyword">async</span> () =&gt; &#123;</div><div class="line">		<span class="comment">// 传入一个获取全局token的方法</span></div><div class="line">		<span class="keyword">var</span> txt = <span class="keyword">await</span> fs.readFile(<span class="string">"./token/access_token.txt"</span>, <span class="string">"utf8"</span>);</div><div class="line">		<span class="keyword">return</span> <span class="built_in">JSON</span>.parse(txt);</div><div class="line">	&#125;,</div><div class="line">	<span class="keyword">async</span> token =&gt; &#123;</div><div class="line">		<span class="comment">// 请将token存储到全局，跨进程、跨机器级别的全局，比如写到数据库、redis等</span></div><div class="line">		<span class="comment">// 这样才能在cluster模式及多机情况下使用，以下为写入到文件的示例</span></div><div class="line">		<span class="keyword">await</span> fs.writeFile(<span class="string">"./token/access_token.txt"</span>, <span class="built_in">JSON</span>.stringify(token));</div><div class="line">	&#125;</div><div class="line">);</div></pre></td></tr></table></figure></p>
+<p>注：如果报读取不了token文件，就手动在相应的目录，新建的文本文件, 比如 access_token.txt</p>
+<p><br><br></p>
+<p>获取微信签名<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> jsapi_ticket = <span class="keyword">await</span> api.getLatestTicket();</div><div class="line"><span class="keyword">let</span> nonce_str = <span class="string">'abcdefg'</span>;    <span class="comment">// 密钥，字符串任意，可以随机生成</span></div><div class="line"><span class="keyword">let</span> timestamp = <span class="built_in">parseInt</span>(<span class="keyword">new</span> <span class="built_in">Date</span>().getTime() / <span class="number">1000</span>) + <span class="string">''</span>;  <span class="comment">// 时间戳</span></div><div class="line"><span class="keyword">let</span> url = ctx.request.body.url;   <span class="comment">// 使用接口的url链接，不包含#后的内容</span></div><div class="line"><span class="keyword">let</span> str = <span class="string">'jsapi_ticket='</span> + jsapi_ticket.ticket + <span class="string">'&amp;noncestr='</span> + nonce_str + <span class="string">'&amp;timestamp='</span> + timestamp + <span class="string">'&amp;url='</span> + url;</div><div class="line"><span class="keyword">let</span> signature = sha1(str);</div><div class="line"></div><div class="line">ctx.body = &#123;</div><div class="line">    appId: config.appid,</div><div class="line">    timestamp: timestamp,</div><div class="line">    nonceStr: nonce_str,</div><div class="line">    signature: signature</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><br></p>
+<p>跨域请求<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> Koa = <span class="built_in">require</span>(<span class="string">"koa"</span>);</div><div class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Koa();</div><div class="line"><span class="keyword">const</span> cors = <span class="built_in">require</span>(<span class="string">"koa-cors"</span>);</div><div class="line">.....</div><div class="line">app.use(</div><div class="line">	cors(&#123;</div><div class="line">		origin: <span class="string">"http://www.xxxx.com"</span>,</div><div class="line">		maxAge: <span class="number">5</span>,</div><div class="line">		credentials: <span class="literal">true</span>,</div><div class="line">		allowMethods: [<span class="string">"OPTIONS"</span>, <span class="string">"GET"</span>, <span class="string">"POST"</span>, <span class="string">"DELETE"</span>],</div><div class="line">		allowHeaders: [<span class="string">'Content-Type'</span>, <span class="string">'Accept'</span>]</div><div class="line">	&#125;)</div><div class="line">);</div></pre></td></tr></table></figure></p>
+<p><br></p>
+<p>ffmpeg转码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> ffmpeg = <span class="built_in">require</span>(<span class="string">'fluent-ffmpeg'</span>);</div><div class="line">....</div><div class="line"><span class="keyword">var</span> command = ffmpeg(_delPath.amr)</div><div class="line">.audioBitrate(<span class="string">'16k'</span>)  <span class="comment">//16k音频采样率</span></div><div class="line">.audioFrequency(<span class="number">16000</span>)  <span class="comment">//16比特音频信号</span></div><div class="line">.audioQuality(<span class="number">10</span>)   <span class="comment">//音频质量</span></div><div class="line">.on(<span class="string">'end'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="string">'file has been converted succesfully'</span>);</div><div class="line">	resolve();</div><div class="line">&#125;)</div><div class="line">.on(<span class="string">'error'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123;</div><div class="line">	reject(err.message)</div><div class="line">	<span class="built_in">console</span>.log(<span class="string">'an error happened: '</span> + err.message);</div><div class="line">&#125;)</div><div class="line">.save(_delPath.fix);</div></pre></td></tr></table></figure>
+<p><br></p>
+<p>提交声纹服务器</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> rp = <span class="built_in">require</span>(<span class="string">"request-promise"</span>);</div><div class="line">.....</div><div class="line"><span class="keyword">var</span> vprData = &#123;</div><div class="line">    method: <span class="string">"POST"</span>,</div><div class="line">    url: <span class="string">"http://www.xxxx.com"</span>,</div><div class="line">    headers: &#123;</div><div class="line">        <span class="string">"cache-control"</span>: <span class="string">"no-cache"</span>,</div><div class="line">        <span class="string">"x-udid"</span>: <span class="string">"xxxxxx"</span>,</div><div class="line">        <span class="string">"x-session-key"</span>: <span class="string">"xxxx"</span>,</div><div class="line">        <span class="string">"x-task-config"</span>: <span class="string">"xxxxxx"</span>,</div><div class="line">        <span class="string">"x-request-date"</span>: <span class="string">"xxxxxx"</span>,</div><div class="line">        <span class="string">"x-sdk-version"</span>: <span class="string">"5.1"</span>,</div><div class="line">        <span class="string">"x-app-key"</span>: <span class="string">"xxxxxxx"</span></div><div class="line">    &#125;,</div><div class="line">    formData: &#123;</div><div class="line">        <span class="comment">// Like &lt;input type="file" name="file"&gt;</span></div><div class="line">        file: &#123;</div><div class="line">            value: fs.createReadStream(soundData.path),</div><div class="line">            options: &#123;</div><div class="line">                filename: soundData.name,</div><div class="line">                contentType: soundData.type <span class="comment">//mp3 = audio/mpeg, wav = audio/wav</span></div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> xml = <span class="keyword">await</span> rp(vprData);</div><div class="line"></div><div class="line"><span class="comment">//xml to json</span></div><div class="line"><span class="keyword">var</span> resJson = &#123;&#125;;</div><div class="line"><span class="keyword">var</span> parseString = <span class="built_in">require</span>(<span class="string">'xml2js'</span>).parseString;</div><div class="line"><span class="keyword">await</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</div><div class="line">    parseString(xml.toString(), <span class="keyword">async</span> (err, result) =&gt; &#123;</div><div class="line">        resJson = result.ResponseInfo;</div><div class="line">       	<span class="comment">//do something</span></div><div class="line">        resolve();</div><div class="line">    &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p><br></p>
+<h3 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h3><p>技术栈 vue + vue-router + axios。</p>
+<p>去掉微信 长按 弹出复制的按钮<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">mounted() &#123;</div><div class="line">	<span class="built_in">document</span>.oncontextmenu = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">		e.preventDefault();</div><div class="line">	&#125;;</div><div class="line"></div><div class="line">    <span class="comment">//初始化 微信jssdk</span></div><div class="line">	vm.wx_init();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><br></p>
+<p>获取微信签名，注册事件<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">wx.config(&#123;</div><div class="line">	debug: <span class="literal">false</span>, <span class="comment">// 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。</span></div><div class="line">	appId: res.appId, <span class="comment">// 必填，公众号的唯一标识</span></div><div class="line">	timestamp: res.timestamp, <span class="comment">// 必填，生成签名的时间戳</span></div><div class="line">	nonceStr: res.nonceStr, <span class="comment">// 必填，生成签名的随机串</span></div><div class="line">	signature: res.signature, <span class="comment">// 必填，签名，见附录1</span></div><div class="line">	jsApiList: [</div><div class="line">		<span class="string">"onMenuShareTimeline"</span>,</div><div class="line">		<span class="string">"onMenuShareAppMessage"</span>,</div><div class="line">		<span class="string">"uploadVoice"</span>,</div><div class="line">		<span class="string">"startRecord"</span>,</div><div class="line">		<span class="string">"playVoice"</span>,</div><div class="line">		<span class="string">"stopRecord"</span>,</div><div class="line">		<span class="string">"onVoicePlayEnd"</span></div><div class="line">	] <span class="comment">// 必填，需要使用的JS接口列表，所有JS接口列表见附录2</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p><br></p>
+<p>提前提示用户授权录音功能， 为了避免 正式开始录音时，同时提示授权，此时录音功能状态已经失控。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (!localStorage.rainAllowRecord || localStorage.rainAllowRecord !== <span class="string">"true"</span> ) &#123;</div><div class="line">	wx.startRecord(&#123;</div><div class="line">		success: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">			localStorage.rainAllowRecord = <span class="string">"true"</span>;</div><div class="line">			wx.stopRecord();</div><div class="line">		&#125;,</div><div class="line">		cancel: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">			alert(<span class="string">"用户拒绝授权录音"</span>);</div><div class="line">		&#125;</div><div class="line">	&#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>好了， talk is cheap, show you the code.</p>
+<p><br></p>
+<div class="github-widget" data-repo="ssttm169/tom-vpr"></div>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2018/06/03/how-does-voiceprint-recognition-work-in-wechat-page/">Web端声纹识别</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Tomtan</a></p>
+        <p><span>发布时间:</span>2018-06-03, 10:51:29</p>
+        <p><span>最后更新:</span>2018-06-03, 10:59:25</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2018/06/03/how-does-voiceprint-recognition-work-in-wechat-page/" title="Web端声纹识别">http://www.itomtan.com/2018/06/03/how-does-voiceprint-recognition-work-in-wechat-page/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://www.itomtan.com/2018/06/03/how-does-voiceprint-recognition-work-in-wechat-page/　　作者: Tomtan" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2018/05/28/how-to-block-popup-ads-in-browser/">
+                    专冶各种H5的嵌入垃圾广告!
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#服务端"><span class="toc-number">1.</span> <span class="toc-text">服务端</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#客户端"><span class="toc-number">2.</span> <span class="toc-text">客户端</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2018/05/28/how-to-block-popup-ads-in-browser/" title="下一篇: 专冶各种H5的嵌入垃圾广告!">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/06/03/how-does-voiceprint-recognition-work-in-wechat-page/">Web端声纹识别</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/28/how-to-block-popup-ads-in-browser/">专冶各种H5的嵌入垃圾广告!</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/12/what-I-learnt-in-2017/">2017年总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/05/what-I-learnt-in-November/">2017年11月的总结/收获/感悟</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/22/what-I-learn-from-The-Autobiography-of-Benjamin-Franklin/">富兰克林自传读后感</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/05/what-I-learnt-from-Poor-Charlies-Almanack/">穷查理宝典:查理·芒格智慧箴言录 读书笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/02/what-I-learnt-in-october/">2017年10月的总结/收获/感悟</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/27/wechat-sharing-functions-dont-work-properly/">Vue框架在苹果手机上无法正常使用微信分享接口的解决方案</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/17/vue-axios-timeout-retry-callback/">axios请求超时,设置重新请求的完美解决方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/12/how-to-launch-mongodb-automatically/">如何快速启动mongodb服务</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/09/what-I-learnt-in-september/">2017年9月的总结/收获/感悟</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/29/the-problem-when-use-post-asset-folder/">Hexo开启post_asset_folder后, 安装hexo-asset-image,不起作用的问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/27/how-to-use-wechat-debug/">H5,移动端调试神器 微信web开发者工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/27/how-to-be-a-man/">做人做事准则</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/27/hello-world/">设置contentEditable="true"作为文本编辑器，定位光标解决办法</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2017-2018 Tomtan
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+    <script src="/js/GithubRepoWidget.js"></script>
+
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+             github: ".github-widget a", 
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
